@@ -1,0 +1,153 @@
+.footer {
+  background-color: #be9c6b;
+  padding-top: 56px !important;
+  padding-bottom: 56px !important;
+
+  @media (max-width: 575px) {
+    padding-bottom: 30px !important;
+    padding-top: 30px !important;
+  }
+
+  &__left {
+    width: 50%;
+
+    @media (max-width: 992px) {
+      margin-bottom: 25px;
+    }
+
+    > img {
+      max-width: 120px;
+
+      @media (max-width: 1100px) {
+        width: 103px;
+      }
+    }
+  }
+
+  &__flexBox {
+    display: flex;
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+    }
+  }
+
+  &__social {
+    margin-top: 24px;
+    svg {
+      color: #fff;
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 992px) {
+      display: block;
+    }
+
+    &--items {
+      width: calc(100% / 3);
+
+      @media (max-width: 992px) {
+        float: left;
+      }
+
+      &:not(:last-child) {
+        margin-right: 150px;
+
+        @media (max-width: 1366px) {
+          margin-right: 92px;
+        }
+
+        @media (max-width: 1162px) {
+          margin-right: 45px;
+        }
+
+        @media (max-width: 992px) {
+          width: calc((100% / 2) - 23px);
+        }
+
+        @media (max-width: 575px) {
+          width: 100%;
+          margin-top: 15px;
+        }
+      }
+
+      &:nth-child(2) {
+        margin-right: 0 !important;
+      }
+
+      &:last-child {
+        @media (max-width: 992px) {
+          width: 100%;
+          margin-top: 30px;
+        }
+
+        h4 {
+          text-align: right;
+
+          @media (max-width: 992px) {
+            text-align: left;
+          }
+        }
+
+        p {
+          color: #fff;
+          text-align: right;
+          @media (max-width: 992px) {
+            text-align: left;
+          }
+        }
+
+        a {
+          display: flex;
+          justify-content: flex-end;
+          white-space: nowrap;
+          text-align: right;
+          @media (max-width: 992px) {
+            text-align: left;
+            justify-content: flex-start;
+          }
+
+          @media (max-width: 575px) {
+            font-size: 14px;
+          }
+
+          &:last-child {
+            @media (max-width: 575px) {
+              margin-bottom: 0;
+            }
+          }
+
+          a {
+            margin-left: 8px;
+          }
+        }
+      }
+
+      h4 {
+        font-size: 20px;
+        margin-bottom: 35px;
+        color: #fff;
+        white-space: nowrap;
+      }
+
+      a {
+        display: block;
+        color: #fff;
+        transition: all 0.2s;
+        margin-bottom: 16px;
+        white-space: nowrap;
+
+        &:hover {
+          color: #303882;
+        }
+      }
+    }
+  }
+}

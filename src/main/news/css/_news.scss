@@ -1,0 +1,27 @@
+.news {
+  .home__relatedSliderContent {
+    margin-top: 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f7f7f7;
+  }
+
+  .home__relatedSliderItems:after {
+    display: none;
+  }
+
+  .home__relatedSliderContent--info {
+    h4 {
+      color: #be9c6b;
+    }
+  }
+
+  .home__relatedTitle {
+    padding-top: 0;
+    padding-bottom: 55px;
+
+    @media (max-width: 992px) {
+      padding-bottom: 7px;
+    }
+  }
+}

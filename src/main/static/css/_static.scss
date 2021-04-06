@@ -1,0 +1,56 @@
+.static {
+  .productDetail__tabBox {
+    margin-top: 30px;
+  }
+
+  .product__left {
+    a {
+      padding-left: 0;
+    }
+
+    @media (max-width: 992px) {
+      margin-bottom: 20px;
+      width: 100%;
+    }
+  }
+
+  .product__right {
+    @media (max-width: 992px) {
+      width: 100% !important;
+    }
+  }
+
+  .product__info {
+    @media (max-width: 992px) {
+      display: flex;
+      display: flex;
+      flex-direction: row;
+
+      width: 100%;
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+  }
+}
+
+.dialog-enter {
+  opacity: 0.01;
+  transform: scale(1.1);
+}
+
+.dialog-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 300ms;
+}
+
+.dialog-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dialog-exit-active {
+  opacity: 0.01;
+  transform: scale(1.1);
+  transition: all 300ms;
+}

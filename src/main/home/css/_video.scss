@@ -1,0 +1,134 @@
+.video {
+  position: relative;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 30px;
+  }
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 59px;
+
+    @media (max-width: 992px) {
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 575px) {
+      margin-bottom: 0;
+    }
+
+    h4 {
+      font-size: 40px;
+      color: #303882;
+
+      @media (max-width: 992px) {
+        font-size: 35px;
+        margin-bottom: 25px;
+        text-align: center;
+      }
+
+      @media (max-width: 765px) {
+        font-size: 25px;
+      }
+
+      span {
+        font-weight: bold;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  &__box {
+    position: relative;
+    height: 239px;
+    display: flex;
+  }
+
+  &__left {
+    width: 20%;
+    height: 100%;
+    background-color: #be9c6b;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 50px;
+    background-repeat: no-repeat;
+    background-position: right top 22px;
+    background-size: contain;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    strong {
+      margin-bottom: 0;
+      font-size: 40px;
+      color: #fff;
+
+      @media (max-width: 1200px) {
+        font-size: 25px;
+      }
+    }
+  }
+
+  &__right {
+    position: relative;
+    width: 80%;
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+  }
+
+  &__slideBox {
+    height: 100%;
+  }
+
+  &__sliderItemLayer {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__sliderItem {
+    position: relative;
+    height: 239px;
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__buttonBox {
+    position: absolute;
+    bottom: 25px;
+    display: flex;
+    background-color: transparent;
+    border: none;
+    padding: 0 15px;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
+    text-align: left;
+    font-weight: bold;
+
+    @media (max-width: 1600px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 575px) {
+      width: 100%;
+    }
+
+    img {
+      width: 35px;
+      margin-right: 15px;
+    }
+  }
+}
