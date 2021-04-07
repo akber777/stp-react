@@ -19,7 +19,11 @@ import { useQuery } from "react-query";
 // myQueries
 import { Products } from "../../queries/queries";
 
+// product menu
 import ProductMenu from "./productMenu";
+
+// animated css
+import { Animated } from "react-animated-css";
 
 const Productgallery = (props) => {
   useLayoutEffect(() => {
@@ -74,17 +78,25 @@ const Productgallery = (props) => {
               subProducts.data.data.products.data.map((item, index) => (
                 <div className="product__right--content__items" key={index}>
                   <div className="home__cableLayout">
-                    <Link to={"/product/" + item.slug}>
-                      <img
-                        src={item.cover !== null ? item.cover.path : ""}
-                        alt=""
-                      />
-                      <div className="home__cableLayout--item">
-                        <div className="cableInfo">
-                          <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
+                    <Animated
+                      animationIn="zoomIn"
+                      animationOut="zoomOut"
+                      animationInDuration={400}
+                      animationOutDuration={400}
+                      isVisible={true}
+                    >
+                      <Link to={"/product/" + item.slug}>
+                        <img
+                          src={item.cover !== null ? item.cover.path : ""}
+                          alt=""
+                        />
+                        <div className="home__cableLayout--item">
+                          <div className="cableInfo">
+                            <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
+                      </Link>
+                    </Animated>
                   </div>
                 </div>
               ))}

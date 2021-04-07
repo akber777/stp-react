@@ -32,9 +32,13 @@ export const NewsLatest = async (key) => {
 
 // News
 export const News = async (key) => {
-  const res = await axios.get(
-    baseUrl + version + "data/news" + key.queryKey[1]
-  );
+  const res = await axios.get(baseUrl + version + "data/news", {
+    headers: {
+      "Content-Type": "application/json",
+      page: key.queryKey[1],
+      number: 4,
+    },
+  });
 
   return res.data;
 };
@@ -126,6 +130,22 @@ export const StaticPageDetail = async (key) => {
   const res = await axios.get(
     baseUrl + version + `data/page${key.queryKey[1]}`
   );
+
+  return res.data;
+};
+
+// footerMenu
+export const footerMenu = async (key) => {
+  const res = await axios.get(
+    baseUrl + version + `data/menu/footer-menu/${key.queryKey[1]}`
+  );
+
+  return res.data;
+};
+
+// settings
+export const settings = async (key) => {
+  const res = await axios.get(baseUrl + version + `data/setting`);
 
   return res.data;
 };

@@ -1,10 +1,40 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 // css
 import "./css/_footer.scss";
 
+// query
+import { useQuery } from "react-query";
+
+// myQueries
+import { footerMenu, settings } from "../queries/queries";
+
+// helper
+import { checkedUrl, checkedIsExternal } from "../helper/helper";
+
+// atoms
+import { settingsState } from "../atoms/atoms";
+
+// recoil
+import { useRecoilState } from "recoil";
+
+// apiMediaPath
+import { mediaPath } from "../api/api";
+
+// react render Html
+import renderHtml from "react-render-html";
+
 const Footer = (props) => {
+  const [settingsUpdate, setSettingsUpdate] = useRecoilState(settingsState);
+
+  const { data, isLoading } = useQuery(["footerMenu", ""], footerMenu);
+
+  useQuery(["settings"], settings, {
+    onSuccess: function (succ) {
+      setSettingsUpdate(succ.data);
+    },
+  });
+
   return (
     <footer className="footer myPad">
       <div className="whatsap_div">
@@ -18,42 +48,41 @@ const Footer = (props) => {
       </div>
       <div className="footer__flexBox">
         <div className="footer__left">
-          <img src={require("../images/logoheader.png").default} alt="" />
+          <img
+            src={
+              settingsUpdate !== null
+                ? mediaPath + settingsUpdate.footer_logo
+                : ""
+            }
+            alt=""
+          />
           <div className="footer__social">
-            <i className="fab fa-twitter"></i>
-            <i className="fab fa-facebook-f"></i>
-            <i className="fas fa-play"></i>
-            <i className="fab fa-linkedin"></i>
+            {settingsUpdate !== null &&
+              settingsUpdate.social.map((item, index) => (
+                <a href={item.url} key={index} target="_blank" rel="noreferrer">
+                  <i className={item.class}></i>
+                </a>
+              ))}
           </div>
         </div>
         <div className="footer__right">
+          {isLoading === false &&
+            data.map((item, index) => (
+              <div className="footer__right--items" key={index}>
+                <h4>{item.title}</h4>
+                {item.items.map((menuItems, menuIndex) =>
+                  checkedIsExternal(
+                    menuItems.viewBag.isExternal,
+                    menuIndex,
+                    checkedUrl(menuItems),
+                    menuItems.title
+                  )
+                )}
+              </div>
+            ))}
           <div className="footer__right--items">
-            <h4>Why WORK with us?</h4>
-            <NavLink to={"/"}>Secure booking</NavLink>
-            <NavLink to={"/"}>Best price guarantee</NavLink>
-            <NavLink to={"/"}>Passionate service</NavLink>
-            <NavLink to={"/"}>Exclusive knowledge</NavLink>
-            <NavLink to={"/"}>Benefits for partners</NavLink>
-          </div>
-          <div className="footer__right--items">
-            <h4>QUICK LINKS</h4>
-            <NavLink to={"/"}>About us</NavLink>
-            <NavLink to={"/"}>NESEY</NavLink>
-            <NavLink to={"/"}>HTR OXYGEN</NavLink>
-            <NavLink to={"/"}>ELIONORE 63</NavLink>
-            <NavLink to={"/"}>SW KOI </NavLink>
-          </div>
-          <div className="footer__right--items">
-            <h4>CONNECT US</h4>
-            <p>
-              Mahmutbey Mah. Taşocağı Cad. No:3, Ağaoğlu My Office 212,
-              Kat:26,D:432
-            </p>
-            <a href="tel:">
-              (+90 212) 576 1221{" "}
-              <a href="tel:(+90 542) 575 0743">(+90 542) 575 0743</a>
-            </a>
-            <a href="mailto:www.gocreative.com.tr">www.gocreative.com.tr</a>
+            {settingsUpdate !== null &&
+              renderHtml(settingsUpdate.footer_contact)}
           </div>
         </div>
       </div>

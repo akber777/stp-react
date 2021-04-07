@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 
 // css
 import "./css/_product.scss";
@@ -22,12 +22,19 @@ import { Category } from "../../queries/queries";
 const ProductMenu = (props) => {
   const { pathname } = useLocation();
 
+  const [dataLoad, setDataLoad] = useState(false);
+
   useLayoutEffect(() => {
     resizeBody();
+    $(".product__info a.active").parents(".parentsA").addClass("showAll");
+    $(".product__info a.active").parents(".parentsA").slideDown();
   });
 
   const { data, isLoading } = useQuery(["productCategory", ""], Category, {
     refetchOnWindowFocus: false,
+    onSuccess: function () {
+      setDataLoad(true);
+    },
   });
 
   useLayoutEffect(() => {
@@ -40,6 +47,10 @@ const ProductMenu = (props) => {
 
     $(".product__mobInfo").removeClass("showMenu");
   }, [pathname]);
+
+  useLayoutEffect(() => {
+    $(".parentsA ").hide();
+  }, [dataLoad]);
 
   useLayoutEffect(() => {
     $(".openSub").on("click", function (event) {
@@ -63,6 +74,7 @@ const ProductMenu = (props) => {
             <div className="product__info">
               <NavLink
                 key={index}
+                data-icon={item.subcategories.data.length !== 0 ? ">" : ""}
                 className={
                   item.subcategories.data.length === 0
                     ? "noOpenSub product__info--top"
@@ -70,18 +82,18 @@ const ProductMenu = (props) => {
                 }
                 to={
                   item.subcategories.data.length === 0
-                    ? "/productgallery/" + item.slug
+                    ? "/subcategory/" + item.slug
                     : "/productsubgallery/" + item.slug
                 }
               >
                 {item.name}
               </NavLink>
-              <div>
+              <div className="parentsA">
                 {item.subcategories.data.map((subcategory, subIndex) => (
                   <NavLink
-                    to={"/productgallery/" + subcategory.slug}
+                    to={"/subcategory/" + subcategory.slug}
                     key={subIndex}
-                    className="productCategory"
+                    className="productCategory notCloseMenu"
                   >
                     {subcategory.name}
                     {subcategory.products.data.map(
@@ -89,6 +101,7 @@ const ProductMenu = (props) => {
                         <NavLink
                           key={subProductIndex}
                           to={"/product/" + subProduct.slug}
+                          className="notCloseMenu"
                         >
                           {subProduct.name}
                         </NavLink>
@@ -97,7 +110,11 @@ const ProductMenu = (props) => {
                   </NavLink>
                 ))}
                 {item.products.data.map((product, proindex) => (
-                  <NavLink to={"/product/" + product.slug} key={proindex}>
+                  <NavLink
+                    to={"/product/" + product.slug}
+                    key={proindex}
+                    className="notCloseMenu"
+                  >
                     {product.name}
                   </NavLink>
                 ))}
@@ -111,6 +128,7 @@ const ProductMenu = (props) => {
           <div className="product__info">
             <NavLink
               key={index}
+              data-icon={item.subcategories.data.length !== 0 ? ">" : ""}
               className={
                 item.subcategories.data.length === 0
                   ? "noOpenSub product__info--top"
@@ -118,18 +136,18 @@ const ProductMenu = (props) => {
               }
               to={
                 item.subcategories.data.length === 0
-                  ? "/productgallery/" + item.slug
+                  ? "/subcategory/" + item.slug
                   : "/productsubgallery/" + item.slug
               }
             >
               {item.name}
             </NavLink>
-            <div>
+            <div className="parentsA">
               {item.subcategories.data.map((subcategory, subIndex) => (
                 <NavLink
-                  to={"/productgallery/" + subcategory.slug}
+                  to={"/subcategory/" + subcategory.slug}
                   key={subIndex}
-                  className="productCategory"
+                  className="productCategory notCloseMenu"
                 >
                   {subcategory.name}
                   {subcategory.products.data.map(
@@ -137,6 +155,7 @@ const ProductMenu = (props) => {
                       <NavLink
                         key={subProductIndex}
                         to={"/product/" + subProduct.slug}
+                        className="notCloseMenu"
                       >
                         {subProduct.name}
                       </NavLink>
@@ -145,7 +164,11 @@ const ProductMenu = (props) => {
                 </NavLink>
               ))}
               {item.products.data.map((product, proindex) => (
-                <NavLink to={"/product/" + product.slug} key={proindex}>
+                <NavLink
+                  to={"/product/" + product.slug}
+                  key={proindex}
+                  className="notCloseMenu"
+                >
                   {product.name}
                 </NavLink>
               ))}

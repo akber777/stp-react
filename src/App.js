@@ -121,7 +121,7 @@ function App() {
           pathname.split("/")[1] !== "news" &&
           pathname.split("/")[1] !== "download" &&
           pathname.split("/")[1] !== "searchresult" &&
-          pathname.split("/")[1] !== "productgallery" &&
+          pathname.split("/")[1] !== "subcategory" &&
           pathname.split("/")[1] !== "productsubgallery" &&
           pathname.split("/")[1] !== "product" &&
           pathname.split("/")[1] !== "404" &&
@@ -148,7 +148,7 @@ function App() {
         <Route path={"/searchresult"}>
           <SearchResut />
         </Route>
-        <Route path={"/productgallery"}>
+        <Route path={"/subcategory"}>
           <ProductGallery />
         </Route>
         <Route path={"/productsubgallery"}>

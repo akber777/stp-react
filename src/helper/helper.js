@@ -3,6 +3,9 @@ import $ from "jquery";
 // aos
 import AOS from "aos";
 
+//react router dom
+import { NavLink } from "react-router-dom";
+
 export function resizeBody() {
   var footer_height = $(".footer").height(),
     header_height = $("header").height(),
@@ -48,4 +51,22 @@ export const setupAos = () => {
     easing: "ease-in-sine",
     delay: 100,
   });
+
+  AOS.refresh()
+};
+
+export const checkedIsExternal = (type, menuIndex, menuItemsUrl, title) => {
+  if (type === "0") {
+    return (
+      <NavLink key={menuIndex} to={menuItemsUrl}>
+        {title}
+      </NavLink>
+    );
+  } else if (type === "1") {
+    return (
+      <a key={menuIndex} href={menuItemsUrl} target="_blank" rel="noreferrer">
+        {title}
+      </a>
+    );
+  }
 };

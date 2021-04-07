@@ -33,8 +33,16 @@ import { baseUrl, version } from "../api/api";
 // react video player
 import ReactPlayer from "react-player";
 
+// atoms
+import { settingsState } from "../atoms/atoms";
+
+// recoil
+import { useRecoilValue } from "recoil";
+
 const Header = (props) => {
   const { pathname } = useLocation();
+
+  const settingsData = useRecoilValue(settingsState);
 
   useLayoutEffect(() => {
     toggleSearch();
@@ -65,6 +73,30 @@ const Header = (props) => {
     });
     $(".header__mobMenu").on("click", function () {
       $(".header__mobDropMenu").removeClass("showMenu");
+    });
+
+    $(".hoverLogoBox").on("mouseover", function () {
+      $(".header__navBox").css({
+        backgroundColor: "#fff",
+      });
+
+      $(".header__navBox a").css({
+        color: "#303882",
+      });
+
+      $(".header__langBox").addClass("changeLangBox");
+    });
+
+    $(".hoverLogoBox").on("mouseout", function () {
+      $(".header__navBox").css({
+        backgroundColor: "transparent",
+      });
+
+      $(".header__navBox a").css({
+        color: "#fff",
+      });
+
+      $(".header__langBox").removeClass("changeLangBox");
     });
   }, []);
 
@@ -131,25 +163,49 @@ const Header = (props) => {
             position:
               pathname === "/" || pathname === "/az" ? "absolute" : "relative",
             backgroundColor:
-              pathname === "/" || pathname === "/az" ? "transparent" : "#be9c6b",
+              pathname === "/" || pathname === "/az"
+                ? "transparent"
+                : "#be9c6b",
           }}
         >
           <div className="header__logo logoFixed">
             <Link to={"/"} className="logoHeader">
-              <img src={require("../images/logoHover.png").default} alt="" />
+              <img
+                src={
+                  settingsData !== null
+                    ? settingsData.header_hover_logo.original
+                    : ""
+                }
+                alt=""
+              />
             </Link>
             <Link to={"/"}>
-              <img src={require("../images/logoheader.png").default} alt="" />
+              <img
+                src={
+                  settingsData !== null ? settingsData.header_logo.original : ""
+                }
+                alt=""
+              />
             </Link>
           </div>
-          <div
-            className="header__logo hoverLogoBox"
-          >
+          <div className="header__logo hoverLogoBox">
             <Link to={"/"} className="logoHeader">
-              <img src={require("../images/logoHover.png").default} alt="" />
+              <img
+                src={
+                  settingsData !== null
+                    ? settingsData.header_hover_logo.original
+                    : ""
+                }
+                alt=""
+              />
             </Link>
             <Link to={"/"}>
-              <img src={require("../images/logoheader.png").default} alt="" />
+              <img
+                src={
+                  settingsData !== null ? settingsData.header_logo.original : ""
+                }
+                alt=""
+              />
             </Link>
           </div>
           <div className="header__navBox">
@@ -163,7 +219,9 @@ const Header = (props) => {
               </div>
               <div className="header__navRight">
                 <div className="header__langBox">
-                  <NavLink to={""}>Eng</NavLink>
+                  <NavLink to={""}>En</NavLink>
+                  <NavLink to={""}>Tr</NavLink>
+                  <NavLink to={""}>Az</NavLink>
                 </div>
                 <div className="header__mobMenu">
                   <i className="fas fa-bars"></i>

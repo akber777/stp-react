@@ -25,6 +25,9 @@ import { baseUrl, version } from "../../api/api";
 // render html
 import renderHtml from "react-render-html";
 
+// animated css
+import { Animated } from "react-animated-css";
+
 const Static = (props) => {
   useLayoutEffect(() => {
     resizeBody();
@@ -77,8 +80,6 @@ const Static = (props) => {
     }
   );
 
-  console.log(staticType);
-
   return (
     <main>
       <div className="product__breadCrumbs myPad">
@@ -107,14 +108,26 @@ const Static = (props) => {
         </div>
         <div
           className="product__right"
-          style={{ width: layout === true ? "100%" : "84%" }}
+          style={{
+            width: layout === true ? "100%" : "84%",
+            overflow: "hidden",
+          }}
         >
           <div className="product__right--title">
             <h1>
               {staticPageDetail.isLoading === false &&
                 staticPageDetail.data !== undefined &&
-                staticPageDetail.data.length !== 0 &&
-                staticPageDetail.data.viewBag.title}
+                staticPageDetail.data.length !== 0 && (
+                  <Animated
+                    animationIn="slideInLeft"
+                    animationOut="zoomOut"
+                    animationInDuration={400}
+                    animationOutDuration={400}
+                    isVisible={true}
+                  >
+                    {staticPageDetail.data.viewBag.title}
+                  </Animated>
+                )}
             </h1>
           </div>
           <div className="productDetail__tabBox">

@@ -66,14 +66,17 @@
     border-bottom: 1px solid rgba(161, 173, 197, 0.1);
 
     &:hover {
-      background-color: #fff;
-      transition: all 0.3s;
-      -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+      background-color: #fff !important;
+      transition: all 0.3s !important;
+      -webkit-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75) !important;
+      -moz-box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75) !important;
+      box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75) !important;
 
       a {
         color: #303882 !important;
+        &:after {
+          background-color: #303882 !important;
+        }
       }
     }
 
@@ -274,15 +277,36 @@
     margin-right: 21px;
 
     a {
+      position: relative;
       color: #fff !important;
       font-size: 14px;
       transition: all 0.2s;
+
+      &:not(:last-child) {
+        margin-right: 15px;
+
+        &:after {
+          position: absolute;
+          content: "";
+          right: -7px;
+          top: 0px;
+          width: 1px;
+          height: 70%;
+          background-color: #fff;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 
   &__searchBox {
-    width: 75px;
-    height: 70px;
+    width: 94px;
+    height: 94px;
     background-color: #fff;
     display: inline-flex;
     align-items: center;
@@ -513,4 +537,14 @@
 
 .logoFixed {
   display: none;
+}
+
+.changeLangBox {
+  a {
+    color: #303882 !important;
+
+    &:after {
+      background-color: #303882 !important;
+    }
+  }
 }

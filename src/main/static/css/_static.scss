@@ -21,6 +21,11 @@
   }
 
   .product__info {
+
+    a{
+      font-weight: bold;
+    }
+
     @media (max-width: 992px) {
       display: flex;
       display: flex;

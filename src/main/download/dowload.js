@@ -23,6 +23,9 @@ import { NavLink } from "react-router-dom";
 // components
 import DownloadMenu from "./downloadMenu";
 
+// animated css
+import { Animated } from "react-animated-css";
+
 const Download = (props) => {
   useLayoutEffect(() => {
     resizeBody();
@@ -38,44 +41,55 @@ const Download = (props) => {
 
   return (
     <main>
-      <div className="product__breadCrumbs myPad">
-        <NavLink to={"/"}>PRODUCTS</NavLink>
-        <NavLink to={"/"}>Telecommunication Cables </NavLink>
-        <NavLink to={"/"}>VBAPV & VBAPV-K </NavLink>
-      </div>
-      <div className="download static product productDetail myPad">
-        <div className="product__left">
-          <DownloadMenu />
+      <Animated
+        animationIn="slideInLeft"
+        animationOut="zoomOut"
+        animationInDuration={400}
+        animationOutDuration={400}
+        isVisible={true}
+      >
+        <div className="product__breadCrumbs myPad">
+          <NavLink to={"/"}>PRODUCTS</NavLink>
+          <NavLink to={"/"}>Telecommunication Cables </NavLink>
+          <NavLink to={"/"}>VBAPV & VBAPV-K </NavLink>
         </div>
-        <div className="product__right">
-          <div className="product__right--title">
-            <h1>Download</h1>
+        <div className="download static product productDetail myPad">
+          <div className="product__left">
+            <DownloadMenu />
           </div>
-          <div className="productDetail__tabBox">
-            {isLoading === false &&
-              data !== undefined &&
-              data.viewBag.pdf.map((item, index) => (
-                <div
-                  className="product__right--title download__info"
-                  key={index}
-                >
-                  <h4>{item.name}</h4>
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href={mediaPath + item.path}
-                    download
+          <div className="product__right">
+            <div className="product__right--title">
+              <h1>Download</h1>
+            </div>
+            <div className="productDetail__tabBox">
+              {isLoading === false &&
+                data !== undefined &&
+                data.viewBag.pdf.map((item, index) => (
+                  <div
+                    className="product__right--title download__info"
+                    key={index}
                   >
-                    <img src={require("../../images/pdf.png").default} alt="" />
-                    PDF CATALOGUE
-                    <span>{item.size}</span>
-                    <span>{item.date}</span>
-                  </a>
-                </div>
-              ))}
+                    <h4>{item.name}</h4>
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
+                      href={mediaPath + item.path}
+                      download
+                    >
+                      <img
+                        src={require("../../images/pdf.png").default}
+                        alt=""
+                      />
+                      PDF CATALOGUE
+                      <span>{item.size}</span>
+                      <span>{item.date}</span>
+                    </a>
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
-      </div>
+      </Animated>
     </main>
   );
 };

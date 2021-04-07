@@ -1,4 +1,8 @@
 .newsDetail {
+  &__content {
+    min-height: 500px;
+  }
+
   &__breadCrumbs {
     margin-top: 48px;
     margin-bottom: 27px;
@@ -9,6 +13,7 @@
       position: relative;
       color: #be9c6b;
       font-size: 14px;
+      text-transform: uppercase;
 
       &:not(:last-child) {
         margin-right: 20px;

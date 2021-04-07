@@ -60,7 +60,6 @@ const ProductSubGallery = (props) => {
             data !== undefined &&
             data.data.subcategories.data.map((item, index) => (
               <div className="product__right--content__items" key={index}>
-                {console.log(item)}
                 <div className="home__cableLayout">
                   <Link to={"/productgallery/" + item.slug}>
                     <img src={item.img !== null ? item.img.cover : ""} alt="" />
