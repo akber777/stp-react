@@ -52,7 +52,7 @@ export const setupAos = () => {
     delay: 100,
   });
 
-  AOS.refresh()
+  AOS.refresh();
 };
 
 export const checkedIsExternal = (type, menuIndex, menuItemsUrl, title) => {

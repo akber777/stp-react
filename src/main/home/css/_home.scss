@@ -9,7 +9,7 @@
     }
 
     h4 {
-      font-size: 40px;
+      font-size: 37px;
       color: #303882;
 
       @media (max-width: 992px) {
@@ -55,6 +55,7 @@
     .home__cableLayout {
       width: calc(50% - 10px);
       margin-bottom: 20px;
+      background-color: #e6e3e3;
 
       @media (max-width: 1580px) {
         height: 187px;
@@ -143,9 +144,17 @@
   &__cableLayout {
     transition: all 0.2s;
     height: 240px;
+    overflow: hidden;
+    transition: all 0.3s;
+    background-color: #e6e3e3;
 
     &:hover {
       transition: all 0.2s;
+
+      img {
+        transition: all 0.2s;
+        transform: scale(1.1);
+      }
 
       .home__cableLayout--item {
         opacity: 1;
@@ -155,35 +164,44 @@
     }
 
     img {
+      transition: all 0.2s;
       width: 100%;
       height: 100%;
+      object-fit: contain;
     }
 
     .cableInfo {
       width: 100%;
       position: absolute;
-      bottom: 0;
-      left: 0;
       padding: 0 26px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
     }
 
     position: relative;
+
     &--item {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(105, 110, 154, 0.7);
+      background-color: rgba(105, 110, 154, 1);
       opacity: 0;
       z-index: -1;
       transition: all 0.2s;
 
       h4 {
         color: #fff;
+        text-align: center;
       }
 
       p {
+        text-align: center;
         color: #fff;
         padding-bottom: 10px;
       }
@@ -312,15 +330,26 @@
       font-size: 14px;
       margin-bottom: 0;
       color: #fff;
+      display: -webkit-box;
+      line-height: 25px;
+      -webkit-line-clamp: 6;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      height: 150px;
+      overflow: hidden;
+    }
+
+    a {
+      color: #fff;
     }
   }
 
   &__serviceRaitingSliderBox {
     display: flex;
-    padding-bottom: 100px;
-    padding-top: 100px;
+    padding-bottom: 30px;
+    padding-top: 30px;
     align-items: center;
-    background-color: rgba(175, 146, 105, 0.8);
+    background-color: rgba(64, 65, 82, 0.8);
 
     @media (max-width: 765px) {
       padding-bottom: 50px;
@@ -337,8 +366,9 @@
 
     h4 {
       text-align: center;
-      font-size: 40px;
+      font-size: 37px;
       color: #303882;
+      margin-bottom: 15px;
 
       @media (max-width: 992px) {
         font-size: 35px;
@@ -363,6 +393,43 @@
 
   &__related {
     margin-bottom: 25px;
+    margin-top: 44px;
+
+    .home__relatedSliderItems {
+      min-height: 344px !important;
+    }
+
+    .imgRelated {
+      opacity: 0 !important;
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .home__relatedSliderItems {
+      align-items: unset;
+      padding-top: 50px;
+    }
+
+    .home__relatedSliderContents {
+      z-index: 555 !important;
+      background-color: transparent !important;
+
+      p {
+        display: none;
+      }
+
+      h4 {
+        color: #fff;
+        padding: 0 52px;
+        font-size: 30px;
+      }
+    }
 
     .vieMoreContentHeader {
       margin-top: 25px;
@@ -384,7 +451,7 @@
 
     h4 {
       text-align: center;
-      font-size: 40px;
+      font-size: 37px;
       color: #303882;
       margin-bottom: 0;
 
@@ -418,10 +485,15 @@
       bottom: 0;
       width: 100%;
       height: 1px;
-      background-color: #af9269;
+      background-color: #16161b;
     }
 
     &:hover {
+      .home__relatedSliderItems--title {
+        background-color: #404152;
+        transition: all 0.2s;
+      }
+
       &:after {
         transition: all 0.3s;
         height: 1px;
@@ -453,11 +525,13 @@
 
     &--title {
       position: absolute;
-      left: 20px;
-      bottom: -18px;
-      padding: 5px 40px;
-      background-color: #af9269;
+      left: 51px;
+      top: 0;
+      padding: 14px 10px;
+      background-color: #303882;
       color: #fff;
+      z-index: 56;
+      transition: all 0.2s;
     }
   }
 
@@ -483,7 +557,11 @@
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
       overflow: hidden;
-      height: 95px;
+      // height: 95px;
+
+      span {
+        color: #303882;
+      }
 
       p {
         color: #303882;
@@ -491,6 +569,57 @@
       }
     }
   }
+
+
+  &__publication {
+    padding: 0 200px;
+    min-height: 400px;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+
+  &__publicationInfo{
+    width: 500px;
+
+    h4{
+      color: #fff;
+      font-size: 60px;
+    }
+
+    p{
+      color: #fff;
+      font-size: 17px;
+    }
+  }
+
+  &__publicationButtonBox{
+    display: flex;
+    margin-top: 50px;
+
+    a{
+      padding: 15px;
+      background: #fff;
+      border-radius: 5px;
+      color: #303882;
+      transition: all 0.3s;
+
+      &:hover{
+        transition: all 0.3s;
+        background: #303882;
+        color: #fff;
+      }
+
+      &:not(:last-child){
+        margin-right: 15px;
+      }
+    }
+  }
+
 }
 
 .mobSlideCable {

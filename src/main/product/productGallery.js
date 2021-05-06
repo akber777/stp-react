@@ -22,10 +22,12 @@ import { Products } from "../../queries/queries";
 // product menu
 import ProductMenu from "./productMenu";
 
-// animated css
-import { Animated } from "react-animated-css";
+// react i 18
+import { useTranslation } from "react-i18next";
 
 const Productgallery = (props) => {
+  const { t } = useTranslation();
+
   useLayoutEffect(() => {
     resizeBody();
   });
@@ -56,10 +58,21 @@ const Productgallery = (props) => {
     },
   });
 
+
+  useLayoutEffect(() => {
+    if (subProducts.isLoading === false) {
+      if (subProducts.data === undefined) {
+        history.push({
+          pathname: "/404",
+        });
+      }
+    }
+  }, [subProducts.data]);
+
   return (
     <main>
       <div className="product__breadCrumbs myPad">
-        <NavLink to={"/"}>Ana Səhifə</NavLink>
+        <NavLink to={"/"}>{t("homepage")}</NavLink>
         <NavLink to={"/" + pathSplit}>{pathSplit}</NavLink>
       </div>
       <div className="product myPad">
@@ -78,25 +91,17 @@ const Productgallery = (props) => {
               subProducts.data.data.products.data.map((item, index) => (
                 <div className="product__right--content__items" key={index}>
                   <div className="home__cableLayout">
-                    <Animated
-                      animationIn="zoomIn"
-                      animationOut="zoomOut"
-                      animationInDuration={400}
-                      animationOutDuration={400}
-                      isVisible={true}
-                    >
-                      <Link to={"/product/" + item.slug}>
-                        <img
-                          src={item.cover !== null ? item.cover.path : ""}
-                          alt=""
-                        />
-                        <div className="home__cableLayout--item">
-                          <div className="cableInfo">
-                            <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
-                          </div>
+                    <Link to={"/product/" + item.slug}>
+                      <img
+                        src={item.cover !== null ? item.cover.path : ""}
+                        alt=""
+                      />
+                      <div className="home__cableLayout--item">
+                        <div className="cableInfo">
+                          <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
                         </div>
-                      </Link>
-                    </Animated>
+                      </div>
+                    </Link>
                   </div>
                 </div>
               ))}

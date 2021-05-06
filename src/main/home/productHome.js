@@ -29,6 +29,7 @@ const ProductHome = (props) => {
                   (item, index) =>
                     index < 5 && (
                       <div className="home__cableLayout" key={index}>
+                       <h5 className='tit'>{item.name}</h5>
                         <Link to={"/product" + item.url}>
                           <img src={mediaPath + item.img} alt="" />
                           <div className="home__cableLayout--item">
@@ -48,6 +49,7 @@ const ProductHome = (props) => {
                   (item, index) =>
                     index > 4 && (
                       <div className="home__cableLayout" key={index}>
+                         <h5 className='tit'>{item.name}</h5>
                         <Link to={"/product" + item.url}>
                           <img src={mediaPath + item.img} alt="" />
                           <div className="home__cableLayout--item">

@@ -15,9 +15,14 @@ import { Link } from "react-router-dom";
 // basApi
 import { mediaPath } from "../../api/api";
 
+// react i 18
+import { useTranslation } from "react-i18next";
+
 const RelatedProjects = (props) => {
+  const { t } = useTranslation();
+
   return (
-    <div className="home__related">
+    <div className="home__related news">
       <Container>
         <div className="home__relatedTitle">
           <h4>
@@ -29,7 +34,7 @@ const RelatedProjects = (props) => {
         <Splide
           options={{
             gap: 30,
-            type: "loop",
+            type: "false",
             rewind: true,
             arrows: false,
             // perPage: 4,
@@ -52,33 +57,35 @@ const RelatedProjects = (props) => {
           {props.data !== undefined &&
             props.data.viewBag.related_projects.map((item, index) => (
               <SplideSlide key={index}>
-                <Link to={"/product" + item.url}>
+                <a href={item.url} target="_blank">
                   <div className="home__relatedSliderItems">
-                    <div className="home__relatedSliderItems--img">
-                      <div className="imgRelated">
-                        <img src={mediaPath + item.img} alt="" />
-                      </div>
-                      <span className="home__relatedSliderItems--title">
-                        {item.category}
-                      </span>
+                    <div className="header__layout"></div>
+                    <div className="news__buttonLink">
+                      <i className="fas fa-arrow-right"></i>
                     </div>
-                    <div className="home__relatedSliderContent">
-                      <div className="home__relatedSliderContent--info">
+                    <div className="imgRelated">
+                      <img src={mediaPath + item.img} alt="" />
+                    </div>
+                    <span className="home__relatedSliderItems--title">
+                      {item.category}
+                    </span>
+                    <div className="home__relatedSliderContents">
+                      <div className="home__relatedSliderContents--info">
                         <h4>{item.name}</h4>
-                        <div className="home__relatedSliderContent--text">
+                        <div className="home__relatedSliderContents--text">
                           <p>{item.description}</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                </Link>
+                </a>
               </SplideSlide>
             ))}
         </Splide>
       </div>
       <p className="vieMoreContentHeader">
-        <Link to={"/productgallery"}>
-          <button className="btnViewMore">VIEW MORE</button>
+        <Link to={"/related-list"}>
+          <button className="btnViewMore">{t("viewmore")}</button>
         </Link>
       </p>
     </div>

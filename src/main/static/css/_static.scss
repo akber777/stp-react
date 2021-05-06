@@ -4,8 +4,13 @@
   }
 
   .product__left {
+    padding: 15px 0;
+    background-color: #f7f9fb;
+
     a {
-      padding-left: 0;
+      padding: 5px 20px !important;
+      color: #303882;
+      border-bottom: 1px solid #e1e8f0;
     }
 
     @media (max-width: 992px) {
@@ -21,9 +26,22 @@
   }
 
   .product__info {
-
-    a{
+    a {
       font-weight: bold;
+      padding-bottom: 16px !important;
+      padding-top: 16px !important;
+
+      &.active {
+        background-color: #303882;
+        color: #fff !important;
+      }
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #303882 !important;
+        color: #fff !important;
+        transition: all 0.2s;
+      }
     }
 
     @media (max-width: 992px) {

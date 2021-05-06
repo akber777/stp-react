@@ -21,7 +21,7 @@
     }
 
     h4 {
-      font-size: 40px;
+      font-size: 37px;
       color: #303882;
 
       @media (max-width: 992px) {
@@ -50,7 +50,7 @@
   &__left {
     width: 20%;
     height: 100%;
-    background-color: #be9c6b;
+    background-color: #303882;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -76,7 +76,29 @@
 
   &__right {
     position: relative;
-    width: 80%;
+    width: 100%;
+    padding: 0 80px;
+
+    .splide__arrow {
+      background: #303882;
+      opacity: 1;
+    }
+
+    .splide__arrow--prev {
+      left: -3em;
+
+      svg {
+        fill: #ffff;
+      }
+    }
+
+    .splide__arrow--next {
+      right: -3em;
+
+      svg {
+        fill: #ffff;
+      }
+    }
 
     @media (max-width: 992px) {
       width: 100%;
@@ -92,14 +114,38 @@
     left: 0;
     height: 100%;
     width: 100%;
+    z-index: 1;
+    transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
   }
 
   &__sliderItem {
     position: relative;
     height: 239px;
     width: 100%;
+    overflow: hidden;
+    transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
+
+    &:hover {
+      > img {
+        transform: scale(1.2);
+        transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
+      }
+
+      .video__sliderItemLayer {
+        transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
+        opacity: 0;
+      }
+
+      .video__buttonBox {
+        img {
+          transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
+          transform: rotate(360deg);
+        }
+      }
+    }
 
     img {
+      transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
       width: 100%;
       height: 100%;
     }
@@ -114,9 +160,10 @@
     padding: 0 15px;
     align-items: center;
     color: #fff;
-    font-size: 25px;
+    font-size: 21px;
     text-align: left;
     font-weight: bold;
+    z-index: 2;
 
     @media (max-width: 1600px) {
       font-size: 18px;
@@ -129,6 +176,7 @@
     img {
       width: 35px;
       margin-right: 15px;
+      transition: 0.4s cubic-bezier(0.83, 0.27, 0.34, 0.57);
     }
   }
 }

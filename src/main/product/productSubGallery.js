@@ -53,7 +53,7 @@ const ProductSubGallery = (props) => {
       <ProductMenu />
       <div className="product__right">
         <div className="product__right--title">
-          <h1>TELECOMMUNICATION CABLES</h1>
+          <h1>{isLoading === false && data !== undefined && data.data.name}</h1>
         </div>
         <div className="product__right--content">
           {isLoading === false &&
@@ -61,7 +61,7 @@ const ProductSubGallery = (props) => {
             data.data.subcategories.data.map((item, index) => (
               <div className="product__right--content__items" key={index}>
                 <div className="home__cableLayout">
-                  <Link to={"/productgallery/" + item.slug}>
+                  <Link to={"/subcategory/" + item.slug}>
                     <img src={item.img !== null ? item.img.cover : ""} alt="" />
                     <div className="home__cableLayout--item">
                       <div className="cableInfo">

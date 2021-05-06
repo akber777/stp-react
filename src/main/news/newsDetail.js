@@ -30,7 +30,11 @@ import renderHtml from "react-render-html";
 // animated css
 import { Animated } from "react-animated-css";
 
+import { useTranslation } from "react-i18next";
+
 const NewsDetail = (props) => {
+  const { t } = useTranslation();
+
   useLayoutEffect(() => {
     resizeBody();
   });
@@ -64,8 +68,8 @@ const NewsDetail = (props) => {
         isVisible={true}
       >
         <div className="newsDetail__breadCrumbs">
-          <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/news/1"}>News</NavLink>
+          <NavLink to={"/"}>{t("homepage")}</NavLink>
+          <NavLink to={"/news/1"}>{t("news")}</NavLink>
         </div>
         <div className="newsDetail__title">
           <h1>

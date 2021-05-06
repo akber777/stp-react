@@ -28,7 +28,12 @@ import renderHtml from "react-render-html";
 // animated css
 import { Animated } from "react-animated-css";
 
+// react i 18
+import { useTranslation } from "react-i18next";
+
 const Static = (props) => {
+  const { t } = useTranslation();
+
   useLayoutEffect(() => {
     resizeBody();
   });
@@ -44,7 +49,7 @@ const Static = (props) => {
   const pathSplit = pathname.split("/")[pathname.split("/").length - 1];
 
   const staticPageDetail = useQuery(
-    ["staticPageDetail", pathname],
+    ["staticPageDetail", pathSplit],
     StaticPageDetail,
     {
       refetchOnWindowFocus: false,
@@ -58,9 +63,9 @@ const Static = (props) => {
             setStaticType(succ.settings.viewBag.layout);
           }
         } else {
-          history.push({
-            pathname: "/404",
-          });
+          // history.push({
+          //   pathname: "/404",
+          // });
         }
       },
     }
@@ -80,65 +85,77 @@ const Static = (props) => {
     }
   );
 
+  useLayoutEffect(() => {
+    if (staticMenu.isLoading === false) {
+      if (staticMenu.data === undefined) {
+        history.push({
+          pathname: "/404",
+        });
+      }
+    }
+  }, [staticMenu.data]);
+
   return (
-    <main>
-      <div className="product__breadCrumbs myPad">
-        <NavLink to={"/"}>Ana səhifə</NavLink>
-        <NavLink to={"/" + staticType}>{staticType}</NavLink>
-        <NavLink to={pathname}>{pathSplit}</NavLink>
-      </div>
-      <div className="static product productDetail myPad">
-        <div
-          className="product__left"
-          style={{ display: layout === true ? "none" : "block" }}
-        >
-          <div className="product__info">
-            {staticMenu.isLoading === false &&
-              staticMenu.data !== undefined &&
-              staticMenu.data.map((item, index) =>
-                item.type !== "url" ? (
-                  <NavLink key={index} to={checkedUrl(item)}>
-                    {item.title}
-                  </NavLink>
-                ) : (
-                  <a href={checkedUrl(item)}>{item.title}</a>
-                )
-              )}
-          </div>
+    <>
+      <main style={{ height: staticMenu.isLoading === false ? "auto" : 500 }}>
+        <div className="product__breadCrumbs myPad">
+          <NavLink to={"/"}>{t("homepage")}</NavLink>
+          <NavLink to={"/" + staticType}>{staticType}</NavLink>
+          <NavLink to={pathname}>{pathSplit}</NavLink>
         </div>
-        <div
-          className="product__right"
-          style={{
-            width: layout === true ? "100%" : "84%",
-            overflow: "hidden",
-          }}
-        >
-          <div className="product__right--title">
-            <h1>
+        <div className="static product productDetail myPad">
+          <div
+            className="product__left"
+            style={{ display: layout === true ? "none" : "block" }}
+          >
+            <div className="product__info">
+              {staticMenu.isLoading === false &&
+                staticMenu.data !== undefined &&
+                staticMenu.data.map((item, index) =>
+                  item.type !== "url" ? (
+                    <NavLink key={index} to={checkedUrl(item)}>
+                      {item.title}
+                    </NavLink>
+                  ) : (
+                    <a href={checkedUrl(item)}>{item.title}</a>
+                  )
+                )}
+            </div>
+          </div>
+          <div
+            className="product__right"
+            style={{
+              overflow: "hidden",
+              display: staticMenu.isLoading === false ? "block" : "none",
+            }}
+          >
+            <div className="product__right--title">
+              <h1>
+                {staticPageDetail.isLoading === false &&
+                  staticPageDetail.data !== undefined &&
+                  staticPageDetail.data.length !== 0 && (
+                    <Animated
+                      animationIn="slideInLeft"
+                      animationOut="zoomOut"
+                      animationInDuration={400}
+                      animationOutDuration={400}
+                      isVisible={true}
+                    >
+                      {staticPageDetail.data.viewBag.title}
+                    </Animated>
+                  )}
+              </h1>
+            </div>
+            <div className="productDetail__tabBox">
               {staticPageDetail.isLoading === false &&
                 staticPageDetail.data !== undefined &&
-                staticPageDetail.data.length !== 0 && (
-                  <Animated
-                    animationIn="slideInLeft"
-                    animationOut="zoomOut"
-                    animationInDuration={400}
-                    animationOutDuration={400}
-                    isVisible={true}
-                  >
-                    {staticPageDetail.data.viewBag.title}
-                  </Animated>
-                )}
-            </h1>
-          </div>
-          <div className="productDetail__tabBox">
-            {staticPageDetail.isLoading === false &&
-              staticPageDetail.data !== undefined &&
-              staticPageDetail.data.length !== 0 &&
-              renderHtml(staticPageDetail.data.markup)}
+                staticPageDetail.data.length !== 0 &&
+                renderHtml(staticPageDetail.data.markup)}
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

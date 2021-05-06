@@ -128,7 +128,7 @@ export const StaticMenu = async (key) => {
 // staticPageDetail
 export const StaticPageDetail = async (key) => {
   const res = await axios.get(
-    baseUrl + version + `data/page${key.queryKey[1]}`
+    baseUrl + version + `data/page/${key.queryKey[1]}`
   );
 
   return res.data;
@@ -146,6 +146,72 @@ export const footerMenu = async (key) => {
 // settings
 export const settings = async (key) => {
   const res = await axios.get(baseUrl + version + `data/setting`);
+
+  return res.data;
+};
+
+// searchResult
+export const searchResult = async (key) => {
+  const res = await axios.get(baseUrl + version + `data/search?q=${key}`);
+
+  return res.data;
+};
+
+// relatedProjectDetail
+export const relatedDetail = async (key) => {
+  const res = await axios.get(
+    baseUrl + version + `data/project/${key.queryKey[1]}`
+  );
+
+  return res.data;
+};
+
+// relatedProjectList
+export const relatedList = async (key) => {
+  const res = await axios.get(baseUrl + version + `data/project`, {
+    headers: {
+      "Content-Type": "application/json",
+      page: key.queryKey[1],
+      number: 4,
+    },
+  });
+
+  return res.data;
+};
+
+// searchResult
+export const donwloadCategory = async (key) => {
+  const res = await axios.get(
+    baseUrl + version + `data/dowload/category/${key.queryKey[1]}`
+  );
+
+  return res.data;
+};
+
+// searchResult
+export const download = async (key) => {
+  const res = await axios.get(
+    baseUrl + version + `data/dowload/${key.queryKey[1]}`
+  );
+
+  return res.data;
+};
+
+// searchCategory
+export const downloadCategory = async (key) => {
+  const res = await axios.get(
+    baseUrl + version + `data/dowload/category/${key.queryKey[1]}`
+  );
+
+  return res.data;
+};
+
+
+// mediaMenu
+export const mediaMenu = async (key) => {
+  const res = await axios.get(
+      baseUrl + version + `data/menu/media-menu${key.queryKey[1]}`
+  );
 
   return res.data;
 };

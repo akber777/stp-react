@@ -5,11 +5,10 @@
   padding: 0;
   text-decoration: none !important;
   outline: none !important;
+  font-family: 'Roboto Condensed', sans-serif !important;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-}
+
 
 .vieMoreContentHeader {
   font-size: unset !important;
@@ -41,7 +40,7 @@ body {
     width: 70px;
     left: -80px;
     height: 2px;
-    background-color: #a17a4f;
+    background-color: #2c3478;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -85,7 +84,7 @@ body {
   &__close {
     position: absolute;
     right: -29px;
-    top: -70px;
+    top: -42px;
     font-size: 30px;
     color: #fff;
     cursor: pointer;
@@ -182,14 +181,49 @@ body {
   animation-timing-function: linear;
 }
 
-
-.product__info{
-
-  a{
-
-    &.active{
-      color: #be9c6b;
+.product__info {
+  a {
+    &.active {
+      color: #303882 !important;
     }
   }
+}
 
+.tit {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 15px;
+  font-size: 25px;
+  font-weight: bold;
+
+  @media(max-width:992px){
+    font-size: 15px;
+  }
+}
+
+
+.viewMoreColor{
+  button{
+    color: #303882 !important;
+  }
+}
+
+
+.splide__arrow {
+  background: #303882 !important;
+  opacity: 1 !important;
+
+  svg{
+    fill: #fff !important;
+  }
+}
+
+
+.splide__arrow--prev {
+  left: -3em !important;
+}
+
+.splide__arrow--next {
+  right: -3em !important;
 }

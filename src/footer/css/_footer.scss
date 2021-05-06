@@ -1,15 +1,79 @@
 .footer {
-  background-color: #be9c6b;
-  padding-top: 56px !important;
-  padding-bottom: 56px !important;
+  background-color: #303882;
+  //padding-top: 56px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+
+  &__socialFixed {
+    position: sticky;
+    left: 0;
+    bottom: 300px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  &__socialItems {
+    width: 50px;
+    height: 50px;
+    transition: all 0.2s;
+    background: rgb(102, 102, 102);
+
+    &:hover {
+      transition: all 0.2s;
+      width: 70px;
+    }
+
+
+    a {
+      display: block;
+      height: 100%;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg {
+      color: #fff;
+      font-size: 20px;
+    }
+  }
+
+  hr {
+    background-color: #e0eded;
+    margin-top: 3rem;
+  }
+
+  &__reserv {
+    padding-top: 0px !important;
+    padding-bottom: 10px !important;
+
+    p {
+      color: #fff;
+      text-align: center;
+    }
+  }
 
   @media (max-width: 575px) {
     padding-bottom: 30px !important;
     padding-top: 30px !important;
   }
 
+  &__flexBoxItems {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
   &__left {
     width: 50%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
 
     @media (max-width: 992px) {
       margin-bottom: 25px;
@@ -26,9 +90,11 @@
 
   &__flexBox {
     display: flex;
+    padding-top: 27px;
 
     @media (max-width: 992px) {
       flex-direction: column;
+      padding-top: 0;
     }
   }
 
@@ -37,6 +103,7 @@
 
     a {
       display: inline-block;
+
       &:not(:last-child) {
         margin-right: 10px;
       }
@@ -44,6 +111,7 @@
 
     svg {
       color: #fff;
+
       &:not(:last-child) {
         margin-right: 15px;
       }
@@ -53,20 +121,27 @@
   &__right {
     display: flex;
     justify-content: space-between;
+    width: 50%;
+    // padding-top: 103px;
 
     @media (max-width: 992px) {
       display: block;
     }
 
     &--items {
-      width: calc(100% / 3);
+      width: calc(100% / 2);
+      padding-right: 30px;
+
+      > div {
+        width: 100% !important;
+      }
 
       @media (max-width: 992px) {
         float: left;
       }
 
       &:not(:last-child) {
-        margin-right: 150px;
+        margin-left: 50px !important;
 
         @media (max-width: 1366px) {
           margin-right: 92px;
@@ -97,7 +172,7 @@
         }
 
         h4 {
-          text-align: right;
+          text-align: left;
 
           @media (max-width: 992px) {
             text-align: left;
@@ -106,7 +181,8 @@
 
         p {
           color: #fff;
-          text-align: right;
+          text-align: left;
+
           @media (max-width: 992px) {
             text-align: left;
           }
@@ -114,9 +190,9 @@
 
         a {
           display: flex;
-          justify-content: flex-end;
+          justify-content: flex-start;
           white-space: nowrap;
-          text-align: right;
+          text-align: left;
           @media (max-width: 992px) {
             text-align: left;
             justify-content: flex-start;
@@ -153,9 +229,55 @@
         white-space: nowrap;
 
         &:hover {
-          color: #303882;
+          color: #fff;
+          padding-left: 5px;
         }
       }
     }
   }
+
+  &__logoBox {
+    max-width: 115px;
+  }
+
+  &__logoSelf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 25px;
+  }
+
+  &__map {
+    width: 300px;
+    height: 200px;
+    margin-top: 50px;
+
+    > div {
+      height: 200px;
+    }
+  }
+
+  &__container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1500px;
+  }
+
+  &__twitter {
+    padding-right: 70px;
+  }
+
+  &__about {
+    padding-right: 0;
+  }
+
+
+  &__terminal{
+
+    p{
+      display: flex;
+    }
+  }
+
 }

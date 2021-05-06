@@ -19,12 +19,15 @@ import { useQuery } from "react-query";
 // myQueries
 import { ProductListApi } from "../../queries/queries";
 
+// productMenu
 import ProductMenu from "./productMenu";
 
-// animated css
-import { Animated } from "react-animated-css";
+// react i 18
+import { useTranslation } from "react-i18next";
 
 const ProductList = (props) => {
+  const { t } = useTranslation();
+
   useLayoutEffect(() => {
     resizeBody();
   });
@@ -42,58 +45,42 @@ const ProductList = (props) => {
     });
   }, []);
 
-  const { data, isLoading } = useQuery(["subProduct", ""], ProductListApi, {
+  const { data, isLoading } = useQuery(["subProduct", "show"], ProductListApi, {
     refetchOnWindowFocus: false,
   });
 
   return (
     <main>
-      <Animated
-        animationIn="slideInLeft"
-        animationOut="zoomOut"
-        animationInDuration={400}
-        animationOutDuration={400}
-        isVisible={true}
-      >
-        <div className="product__breadCrumbs myPad">
-          <NavLink to={"/"}>Ana Səhifə</NavLink>
-          <NavLink to={pathname}>{pathSplit} </NavLink>
-        </div>
-        <div className="product myPad">
-          <ProductMenu />
-          <div className="product__right">
-            <div className="product__right--content">
-              {isLoading === false &&
-                data !== undefined &&
-                data.data.map((item, index) => (
-                  <div className="product__right--content__items" key={index}>
-                    <div className="home__cableLayout">
-                      <Animated
-                        animationIn="zoomIn"
-                        animationOut="zoomOut"
-                        animationInDuration={400}
-                        animationOutDuration={400}
-                        isVisible={true}
-                      >
-                        <Link to={"/product/" + item.slug}>
-                          <img
-                            src={item.cover !== null ? item.cover.path : ""}
-                            alt=""
-                          />
-                          <div className="home__cableLayout--item">
-                            <div className="cableInfo">
-                              <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
-                            </div>
-                          </div>
-                        </Link>
-                      </Animated>
-                    </div>
+      <div className="product__breadCrumbs myPad">
+        <NavLink to={"/"}>{t("homepage")}</NavLink>
+        <NavLink to={pathname}>{pathSplit} </NavLink>
+      </div>
+      <div className="product myPad">
+        <ProductMenu />
+        <div className="product__right">
+          <div className="product__right--content">
+            {isLoading === false &&
+              data !== undefined &&
+              data.data.map((item, index) => (
+                <div className="product__right--content__items" key={index}>
+                  <div className="home__cableLayout">
+                    <Link to={"/product/" + item.slug}>
+                      <img
+                        src={item.cover !== null ? item.cover.path : ""}
+                        alt=""
+                      />
+                      <div className="home__cableLayout--item">
+                        <div className="cableInfo">
+                          <h4 style={{ marginBottom: 15 }}>{item.name}</h4>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-                ))}
-            </div>
+                </div>
+              ))}
           </div>
         </div>
-      </Animated>
+      </div>
     </main>
   );
 };

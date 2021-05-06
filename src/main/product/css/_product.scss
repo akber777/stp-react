@@ -1,6 +1,11 @@
 .product {
   margin: 30px 0;
   display: flex;
+  align-items: flex-start;
+
+  .home__cableLayout--item {
+    opacity: 1 !important;
+  }
 
   @media (max-width: 992px) {
     flex-direction: column;
@@ -16,7 +21,7 @@
 
   .home__cableLayout {
     height: auto;
-    min-height: 179px;
+    height: 179px;
   }
 
   &__mobMenu {
@@ -29,6 +34,7 @@
     svg {
       font-size: 25px;
     }
+
     margin-bottom: 15px;
   }
 
@@ -59,20 +65,21 @@
     overflow-y: scroll;
     transition: all 0.2s;
     transform: translateX(-150%);
+    padding-top: 53px;
 
     .product__info {
       display: flex;
       flex-direction: column;
       width: 100%;
       padding-left: 30px;
-      margin-top: 50px;
+      margin-top: 6px;
 
       h4 {
-        color: #fff;
+        color: #fff !important;
       }
 
       a {
-        color: #fff;
+        color: #fff !important;
       }
     }
   }
@@ -80,35 +87,53 @@
   &__left {
     display: flex;
     flex-direction: column;
-    width: 16%;
+    // width: 16%;
     // height: 100vh;
     // overflow-y: scroll;
+    padding: 15px 0;
+    padding-top: 0;
+    height: auto;
 
-    @media (max-width: 1200px) {
-      width: 30%;
+    // @media (min-width: 1032px) {
+    //   position: sticky;
+    //   left: 0;
+    //   top: 0;
+    //   float: left;
+
+    // }
+
+    @media (max-width: 1032px) {
+      width: 100%;
       height: auto;
       overflow: unset;
+    }
+
+    @media (min-width: 992px) {
+      background-color: #f7f9fb;
     }
   }
 
   &__right {
-    background-color: #f7f7f7;
+    // background-color: #f7f7f7;
     width: 84%;
     padding: 30px;
     min-height: 700px;
+    padding-right: 0;
+    padding-top: 0;
 
     @media (max-width: 992px) {
       width: 100%;
       padding: 20px;
+      padding-left: 0 !important;
     }
 
     &--content {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 25px;
+      // margin-top: 25px;
 
       &__items {
-        width: calc((100% / 3) - 70px);
+        width: calc((100% / 3) - 47px);
         margin-bottom: 20px;
         margin-right: 70px;
 
@@ -163,6 +188,7 @@
         font-size: 40px;
         color: #303882;
         font-weight: bold;
+        margin-bottom: 25px;
 
         @media (max-width: 992px) {
           font-size: 25px;
@@ -180,26 +206,62 @@
     display: flex;
     flex-direction: column;
 
+    a {
+      transition: all 0.2s;
+      padding-bottom: 16px !important;
+      padding-top: 16px !important;
+
+      &:hover {
+        transition: all 0.2s;
+        color: #fff !important;
+        background-color: #303882;
+      }
+    }
+
     &--top {
       color: #303882;
       font-size: 15px !important;
-      margin-bottom: 14px !important;
+      // margin-bottom: 14px !important;
       padding-left: 0 !important;
       font-weight: bold !important;
       text-transform: uppercase;
       position: relative;
+      padding: 5px 15px !important;
+      border-bottom: 1px solid #e1e8f0;
 
       &::after {
         position: absolute;
         content: attr(data-icon);
-        right: 21px;
-        top: 0;
+        right: 9px;
       }
     }
 
     div {
       display: flex;
       flex-direction: column;
+      color: #303882;
+      font-size: 14px;
+      // padding-left: 15px;
+      display: flex;
+      flex-direction: column;
+
+      span {
+        margin-bottom: 11px;
+      }
+
+      &.active {
+        color: #fff !important;
+        font-weight: bold !important;
+      }
+
+      a {
+        padding-left: 0;
+        margin-top: 5px;
+      }
+
+      &:not(:last-child) {
+        // margin-bottom: 12px;
+      }
     }
 
     @media (max-width: 992px) {
@@ -207,7 +269,7 @@
     }
 
     &:not(:last-child) {
-      margin-bottom: 12px;
+      // margin-bottom: 12px;
     }
 
     a {
@@ -217,13 +279,26 @@
       display: flex;
       flex-direction: column;
 
+      span {
+        margin-bottom: 11px;
+      }
+
+      &.active {
+        color: #808080 !important;
+        font-weight: bold !important;
+      }
+
       a {
         padding-left: 0;
         margin-top: 5px;
       }
 
       &:not(:last-child) {
-        margin-bottom: 12px;
+        // margin-bottom: 12px;
+
+        @media (max-width: 992px) {
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -312,8 +387,14 @@
 
   &__tabBox {
     .tab-content {
-      padding: 46px 43px;
+      padding: 46px 0px;
+      padding-top: 0;
       background-color: #fff;
+
+
+      iframe {
+        width: 100%;
+      }
 
       @media (max-width: 765px) {
         padding: 20px;
@@ -339,13 +420,39 @@
       }
 
       a {
+        position: relative;
         background-color: transparent !important;
         border: none !important;
         padding: 0;
         color: #303882;
+        transition: all 0.4s cubic-bezier(0.63, 0.18, 0, 1.03);
+
+        &:after {
+          position: absolute;
+          content: "";
+          left: 0;
+          bottom: -5px;
+          width: 0%;
+          height: 2px;
+          background-color: #303882;
+          transition: all 0.4s cubic-bezier(0.63, 0.18, 0, 1.03);
+        }
+
+        &:hover {
+          &:after {
+            transition: all 0.4s cubic-bezier(0.63, 0.18, 0, 1.03);
+            width: 100%;
+          }
+        }
 
         &.active {
-          color: #be9c6b !important;
+          color: #303882 !important;
+          font-weight: bold;
+
+          &:after {
+            transition: all 0.4s cubic-bezier(0.63, 0.18, 0, 1.03);
+            width: 100%;
+          }
         }
 
         &:not(:last-child) {
@@ -363,4 +470,63 @@
 
 .showAll {
   display: block;
+}
+
+.onlyProduct {
+  width: auto !important;
+  min-width: 16%;
+}
+
+.openSub {
+  // background-color: #303882;
+  color: #303882 !important;
+}
+
+.openSubNext {
+  position: relative;
+  cursor: pointer !important;
+
+  a {
+    padding-left: 30px !important;
+
+    &::after {
+      position: absolute;
+      content: attr(data-icon);
+      right: 9px;
+      transition: all 0.4s;
+    }
+  }
+
+  span {
+    position: relative;
+    padding-left: 30px;
+
+    &::after {
+      position: absolute;
+      content: attr(data-icon);
+      right: 9px;
+      transition: all 0.4s;
+    }
+  }
+}
+
+.animateDropDown {
+  &:after {
+    transition: all 0.4s;
+    transform: rotate(90deg);
+  }
+
+  span {
+    &:after {
+      transition: all 0.4s;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.parentsA {
+  a {
+    padding-left: 30px !important;
+    padding-right: 30px;
+  }
 }

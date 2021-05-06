@@ -27,10 +27,12 @@ import { ContactApi } from "../../queries/queries";
 // renderHtml
 import renderHtml from "react-render-html";
 
-// animated css
-import { Animated } from "react-animated-css";
+// react i 18
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   useLayoutEffect(() => {
     resizeBody();
   });
@@ -41,84 +43,80 @@ const Contact = () => {
 
   return (
     <main className="contact">
-      <Animated
-        animationIn="slideInLeft"
-        animationOut="zoomOut"
-        animationInDuration={400}
-        animationOutDuration={400}
-        isVisible={true}
-      >
-        <div className="contact__wrapper">
-          <div className="contact__left myPad">
-            <div className="contact__breadCrumbs">
-              {isLoading === false && data !== undefined && (
-                <NavLink to={data.viewBag.url}>{data.viewBag.title}</NavLink>
-              )}
-            </div>
-            <div className="contact__title">
-              <h1>Let's Talk</h1>
-              <h4>Visit Us</h4>
+      <div className="contact__wrapper">
+        <div className="contact__left myPad">
+          <div className="contact__breadCrumbs">
+            {isLoading === false && data !== undefined && (
+              <NavLink to={data.viewBag.url}>{data.viewBag.title}</NavLink>
+            )}
+          </div>
+          <div className="contact__title">
+            {/*<h1>{t("LetsTalk")}</h1>*/}
+            <div>
+              <h4>{t("VisitUs")}</h4>
               {isLoading === false &&
                 data !== undefined &&
                 renderHtml(data.viewBag.address)}
-              <h4>Call Us</h4>
+            </div>
+            <div>
+              <h4>{t("CallUs")}</h4>
               {isLoading === false &&
                 data !== undefined &&
                 renderHtml(data.viewBag.phone)}
-              <h4>Email Us</h4>
+            </div>
+            <div>
+              <h4>{t("EmailUs")}</h4>
               {isLoading === false &&
                 data !== undefined &&
                 renderHtml(data.viewBag.email)}
             </div>
           </div>
-          <div className="contact__right">
-            <div id="map">
-              {isLoading === false && (
-                <Map
-                  locations={[
-                    Number(data.viewBag.latitut),
-                    Number(data.viewBag.longitude),
-                  ]}
-                />
-              )}
-            </div>
+        </div>
+        <div className="contact__right">
+          <div id="map">
+            {isLoading === false && (
+              <Map
+                locations={[
+                  Number(data.viewBag.latitut),
+                  Number(data.viewBag.longitude),
+                ]}
+              />
+            )}
           </div>
         </div>
-        <div className="contact__us">
-          <h4>
-            <span>REGISTER YOUR</span> INTEREST
-          </h4>
-          <Container>
-            <div className="contact__info">
-              <Input
-                className="contact__leftInp"
-                type="text"
-                placeholder={"First Name / Last Name"}
-              />
-              <Input
-                className="contact__leftInp"
-                type="text"
-                placeholder={"Salutation "}
-              />
-              <Input
-                className="contact__leftInp"
-                type="text"
-                placeholder={"Email"}
-              />
-              <NumericInput
-                min={0}
-                strict
-                className="form-control contact__leftInp"
-                placeholder={"Phone"}
-              />
-              <textarea placeholder={"Your message"}></textarea>
-              <div className="contact__sendBtn">
-                <button>Send</button>
-              </div>
+      </div>
+      <div className="contact__us">
+        <h4>{t("REGISTERYOURINTEREST")}</h4>
+        <Container>
+          <div className="contact__info">
+            <Input
+              className="contact__leftInp"
+              type="text"
+              placeholder={t("FirstNameLastName")}
+            />
+            <Input
+              className="contact__leftInp"
+              type="text"
+              placeholder={t("Salutation")}
+            />
+            <Input
+              className="contact__leftInp"
+              type="text"
+              placeholder={t("Email")}
+            />
+            <NumericInput
+              min={0}
+              strict
+              className="form-control contact__leftInp"
+              placeholder={t("Phone")}
+            />
+            <textarea placeholder={t("Yourmessage")}></textarea>
+            <div className="contact__sendBtn">
+              <button>{t("Send")}</button>
             </div>
-          </Container>
-        </div>
-      </Animated>
+          </div>
+        </Container>
+      </div>
     </main>
   );
 };

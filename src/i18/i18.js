@@ -5,7 +5,7 @@ import XHR from "i18next-xhr-backend";
 import { initReactI18next } from "react-i18next";
 
 // baseurl
-import { baseUrl } from "../api/api";
+import { baseUrl, version } from "../api/api";
 
 i18n
   .use(XHR)
@@ -13,11 +13,11 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: baseUrl + "translation/messages/{{lng}}",
+      loadPath: baseUrl + version + "data/translation/messages/{{lng}}",
     },
     debug: process.env.NODE_ENV !== "production",
-    lng: localStorage.getItem("lang"),
-    fallbackLng: localStorage.getItem("lang"),
+    lng: localStorage.getItem("i18nextLng"),
+    fallbackLng: localStorage.getItem("i18nextLng"),
     interpolation: {
       escapeValue: false,
     },

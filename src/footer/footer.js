@@ -1,43 +1,73 @@
-import React from "react";
+import React, {useState} from "react";
 
 // css
 import "./css/_footer.scss";
 
 // query
-import { useQuery } from "react-query";
+import {useQuery} from "react-query";
 
 // myQueries
-import { footerMenu, settings } from "../queries/queries";
+import {footerMenu, settings, ContactApi} from "../queries/queries";
 
 // helper
-import { checkedUrl, checkedIsExternal } from "../helper/helper";
+import {checkedUrl, checkedIsExternal} from "../helper/helper";
 
 // atoms
-import { settingsState } from "../atoms/atoms";
+import {settingsState} from "../atoms/atoms";
 
 // recoil
-import { useRecoilState } from "recoil";
+import {useRecoilState} from "recoil";
 
-// apiMediaPath
-import { mediaPath } from "../api/api";
 
 // react render Html
 import renderHtml from "react-render-html";
 
+// twitter embed
+import {TwitterTimelineEmbed} from "react-twitter-embed";
+
+// map
+import Map from "../main/map/map";
+
+//react router dom
+import {NavLink} from "react-router-dom";
+
+//import react bootstrap
+
+import {Collapse} from 'react-bootstrap';
+
+
 const Footer = (props) => {
-  const [settingsUpdate, setSettingsUpdate] = useRecoilState(settingsState);
+    const [settingsUpdate, setSettingsUpdate] = useRecoilState(settingsState);
 
-  const { data, isLoading } = useQuery(["footerMenu", ""], footerMenu);
+    const {data, isLoading} = useQuery(["footerMenu", ""], footerMenu, {
+        refetchOnWindowFocus: false,
+    });
 
-  useQuery(["settings"], settings, {
-    onSuccess: function (succ) {
-      setSettingsUpdate(succ.data);
-    },
-  });
+    const mapConfig = useQuery(["contact", ""], ContactApi, {
+        refetchOnWindowFocus: false,
+    });
 
-  return (
-    <footer className="footer myPad">
-      <div className="whatsap_div">
+    useQuery(["settings"], settings, {
+        onSuccess: function (succ) {
+            setSettingsUpdate(succ.data);
+        },
+        refetchOnWindowFocus: false,
+    });
+
+
+    const [open, setOpen] = useState(true);
+    const [open2, setOpen2] = useState(false);
+
+    return (
+        <footer
+            className="footer myPad"
+            style={{
+                backgroundImage: `url(${require("../images/map-back.jpg").default})`,
+            }}
+        >
+
+
+            {/* <div className="whatsap_div">
         <a target="_blank" rel="noreferrer" title="" href="2#">
           <img
             className="full"
@@ -45,49 +75,118 @@ const Footer = (props) => {
             alt=""
           />
         </a>
-      </div>
-      <div className="footer__flexBox">
-        <div className="footer__left">
-          <img
-            src={
-              settingsUpdate !== null
-                ? mediaPath + settingsUpdate.footer_logo
-                : ""
-            }
-            alt=""
-          />
-          <div className="footer__social">
-            {settingsUpdate !== null &&
-              settingsUpdate.social.map((item, index) => (
-                <a href={item.url} key={index} target="_blank" rel="noreferrer">
-                  <i className={item.class}></i>
-                </a>
-              ))}
-          </div>
-        </div>
-        <div className="footer__right">
-          {isLoading === false &&
-            data.map((item, index) => (
-              <div className="footer__right--items" key={index}>
-                <h4>{item.title}</h4>
-                {item.items.map((menuItems, menuIndex) =>
-                  checkedIsExternal(
-                    menuItems.viewBag.isExternal,
-                    menuIndex,
-                    checkedUrl(menuItems),
-                    menuItems.title
-                  )
-                )}
-              </div>
-            ))}
-          <div className="footer__right--items">
-            {settingsUpdate !== null &&
-              renderHtml(settingsUpdate.footer_contact)}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+      </div> */}
+            <div className="footer__container">
+                <div className="footer__flexBox">
+                    <div className="footer__left">
+                        {/* <div className="footer__logoSelf">
+              <img
+                className="footer__logoBox"
+                src={
+                  settingsUpdate !== null
+                    ? mediaPath + settingsUpdate.footer_logo
+                    : ""
+                }
+                alt=""
+              />
+            </div> */}
+                        <div className="footer__flexBoxItems">
+                            <div className="footer__right--items ">
+                                {isLoading === false &&
+                                data.map(
+                                    (items, index) =>
+                                        items.items !== undefined && (
+                                            <React.Fragment key={index}>
+                                                <h4>{items.title}</h4>
+                                                {items.items.map((subItem, subIndex) => (
+                                                    <NavLink key={subIndex} to={subItem.url}>
+                                                        {subItem.title}
+                                                    </NavLink>
+                                                ))}
+                                            </React.Fragment>
+                                        )
+                                )}
+                            </div>
+                            <div className="footer__right--items footer__terminal">
+                                {settingsUpdate !== null &&
+                                renderHtml(settingsUpdate.footer_contact)}
+                                <div className="footer__map">
+                                    {mapConfig.isLoading === false && (
+                                        <Map
+                                            locations={[
+                                                Number(mapConfig.data.viewBag.latitut),
+                                                Number(mapConfig.data.viewBag.longitude),
+                                            ]}
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="footer__right">
+                        <div className="footer__right--items footer__twitter">
+                            <div>
+                                <h4
+                                    onClick={() => {
+                                        setOpen(!open)
+                                        setOpen2(false)
+                                    }}
+                                    aria-controls="example-collapse-text"
+                                    aria-expanded={open}
+                                >Twitter
+                                </h4>
+                                <Collapse in={open}>
+                                    <div className="tw">
+                                        {settingsUpdate !== null && (
+                                            <TwitterTimelineEmbed
+                                                sourceType="profile"
+                                                screenName={settingsUpdate.footer_twitter}
+                                                options={{height: 345}}
+                                            />
+                                        )}
+                                    </div>
+                                </Collapse>
+
+                            </div>
+                            <div>
+                                <h4
+                                    onClick={() => {
+                                        setOpen2(!open2)
+                                        setOpen(false)
+                                    }}
+                                    aria-controls="example-collapse-text"
+                                    aria-expanded={open2}
+                                >Facebook
+                                </h4>
+                                <Collapse in={open2}>
+                                    <div className="fb">
+                                        <div className="fb-post"
+                                             data-href={'https://www.facebook.com/20531316728/posts/10154009990506729/'}
+                                             data-width="307">
+                                        </div>
+                                    </div>
+                                </Collapse>
+
+                            </div>
+                        </div>
+                        <div className="footer__right--items footer__about">
+                            <h4>About Us</h4>
+                            <p>
+                                {settingsUpdate !== null &&
+                                renderHtml(settingsUpdate.footer_about)}
+                                <NavLink to={"/corporate"}>View More</NavLink>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div className="footer__reserv">
+                <p>2021 STP Global Cables LLC Allright Reserved.Terms and Conditions</p>
+            </div>
+        </footer>
+    );
 };
 
 export default Footer;

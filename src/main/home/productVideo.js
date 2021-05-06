@@ -32,22 +32,22 @@ const ProductVideo = (props) => {
         </h4>
       </div>
       <div className="video__box">
-        <div
-          className="video__left"
-          style={{
-            backgroundImage: `url(${
-              require("../../images/video.png").default
-            })`,
-          }}
-        >
-          <strong>VIDEOS</strong>
-        </div>
+        {/*<div*/}
+        {/*  className="video__left"*/}
+        {/*  // style={{*/}
+        {/*  //   backgroundImage: `url(${*/}
+        {/*  //     require("../../images/video.png").default*/}
+        {/*  //   })`,*/}
+        {/*  // }}*/}
+        {/*>*/}
+        {/*  <strong>VIDEOS</strong>*/}
+        {/*</div>*/}
         <div className="video__right">
           <div className="video__slideBox">
             <Splide
               options={{
                 gap: "0",
-                arrows: false,
+                arrows: true,
                 autoplay: true,
                 padding: 0,
                 perPage: 4,

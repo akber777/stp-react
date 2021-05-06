@@ -9,7 +9,12 @@ import { Link } from "react-router-dom";
 // ract renderHtml
 import renderHtml from "react-render-html";
 
+import { useTranslation } from "react-i18next";
+import { mediaPath } from "../../api/api";
+
 const StpGlobal = (props) => {
+  const { t } = useTranslation();
+
   return (
     <div className="stpGlobal">
       <div className="stpGlobal__left">
@@ -19,13 +24,20 @@ const StpGlobal = (props) => {
             renderHtml(props.data.viewBag.stp_description)}
           <p className="vieMoreContentHeader">
             <Link to={"/"}>
-              <button className="btnViewMore">VIEW MORE</button>
+              <button className="btnViewMore">{t("viewmore")}</button>
             </Link>
           </p>
         </div>
       </div>
       <div className="stpGlobal__left">
-        <img src={require("../../images/aboutUs.png").default} alt="" />
+        <img
+          src={
+            props.data !== undefined
+              ? mediaPath + props.data.viewBag.stp_img
+              : ""
+          }
+          alt=""
+        />
       </div>
     </div>
   );
