@@ -23,7 +23,7 @@ const StpGlobal = (props) => {
           {props.data !== undefined &&
             renderHtml(props.data.viewBag.stp_description)}
           <p className="vieMoreContentHeader">
-            <Link to={"/"}>
+            <Link to={props.data !== undefined && props.data.viewBag.stp_url}>
               <button className="btnViewMore">{t("viewmore")}</button>
             </Link>
           </p>

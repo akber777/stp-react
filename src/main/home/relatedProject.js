@@ -63,7 +63,7 @@ const RelatedProjects = (props) => {
                     <div className="news__buttonLink">
                       <i className="fas fa-arrow-right"></i>
                     </div>
-                    <div className="imgRelated">
+                    <div className="imgRelated imgRelatedProjects">
                       <img src={mediaPath + item.img} alt="" />
                     </div>
                     <span className="home__relatedSliderItems--title">

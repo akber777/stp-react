@@ -45,9 +45,13 @@ const ProductList = (props) => {
     });
   }, []);
 
-  const { data, isLoading } = useQuery(["subProduct", "show"], ProductListApi, {
-    refetchOnWindowFocus: false,
-  });
+  const { data, isLoading } = useQuery(
+    ["subProduct", "show-category"],
+    ProductListApi,
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   return (
     <main>
@@ -66,7 +70,7 @@ const ProductList = (props) => {
                   <div className="home__cableLayout">
                     <Link to={"/product/" + item.slug}>
                       <img
-                        src={item.cover !== null ? item.cover.path : ""}
+                        src={item.cover !== null ? item.cover.list : ""}
                         alt=""
                       />
                       <div className="home__cableLayout--item">

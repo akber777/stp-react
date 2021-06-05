@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'FuturaExtended';
+    src: url('FuturaExtended.eot');
+    src: url('FuturaExtended.eot?#iefix') format('embedded-opentype'),
+        url('FuturaExtended.woff2') format('woff2'),
+        url('FuturaExtended.woff') format('woff'),
+        url('FuturaExtended.ttf') format('truetype'),
+        url('FuturaExtended.svg#FuturaExtended') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

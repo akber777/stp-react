@@ -5,10 +5,13 @@
   padding: 0;
   text-decoration: none !important;
   outline: none !important;
-  font-family: 'Roboto Condensed', sans-serif !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-
-
 
 .vieMoreContentHeader {
   font-size: unset !important;
@@ -54,7 +57,7 @@
   padding: 0 38px;
 
   @media (max-width: 765px) {
-    padding: 0 20px;
+    padding: 0 32px;
   }
 }
 
@@ -197,28 +200,25 @@
   font-size: 25px;
   font-weight: bold;
 
-  @media(max-width:992px){
+  @media (max-width: 992px) {
     font-size: 15px;
   }
 }
 
-
-.viewMoreColor{
-  button{
+.viewMoreColor {
+  button {
     color: #303882 !important;
   }
 }
-
 
 .splide__arrow {
   background: #303882 !important;
   opacity: 1 !important;
 
-  svg{
+  svg {
     fill: #fff !important;
   }
 }
-
 
 .splide__arrow--prev {
   left: -3em !important;
@@ -226,4 +226,18 @@
 
 .splide__arrow--next {
   right: -3em !important;
+}
+
+
+// .staticData{
+//   margin-bottom: -160px;
+// }
+
+
+.splide__arrows{
+
+  @media(max-width: 724px){
+    display: none;
+  }
+
 }

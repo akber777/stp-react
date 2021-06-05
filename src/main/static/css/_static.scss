@@ -1,6 +1,15 @@
 .static {
   .productDetail__tabBox {
     margin-top: 30px;
+
+    * {
+      font-size: 18px;
+    }
+  }
+
+  h4 {
+    font-size: unset;
+    line-height: unset;
   }
 
   .product__left {

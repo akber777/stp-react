@@ -3,6 +3,10 @@
   margin-top: 55px;
   padding: 0 80px;
 
+  @media(max-width:724px){
+    padding: 0 32px;
+  }
+
   > h4 {
     text-align: center;
     font-size: 37px;

@@ -43,6 +43,19 @@
 
   &__content {
     margin-top: 40px;
+    position: relative;
+    padding-left: 47px;
+
+
+    &:after {
+      position: absolute;
+      left: 11px;
+      content: attr(data-count);
+      top: -4px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
     h4 {
       color: #303882;
       font-size: 20px;

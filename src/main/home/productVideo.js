@@ -28,7 +28,7 @@ const ProductVideo = (props) => {
       />
       <div className="video__title">
         <h4>
-          <span>PRODUTION</span>VIDEOS
+          <span>PRODUCTION</span>VIDEOS
         </h4>
       </div>
       <div className="video__box">

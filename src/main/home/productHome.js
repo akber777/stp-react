@@ -29,8 +29,8 @@ const ProductHome = (props) => {
                   (item, index) =>
                     index < 5 && (
                       <div className="home__cableLayout" key={index}>
-                       <h5 className='tit'>{item.name}</h5>
-                        <Link to={"/product" + item.url}>
+                        <h5 className="tit">{item.name}</h5>
+                        <Link to={item.url}>
                           <img src={mediaPath + item.img} alt="" />
                           <div className="home__cableLayout--item">
                             <div className="cableInfo">
@@ -49,8 +49,8 @@ const ProductHome = (props) => {
                   (item, index) =>
                     index > 4 && (
                       <div className="home__cableLayout" key={index}>
-                         <h5 className='tit'>{item.name}</h5>
-                        <Link to={"/product" + item.url}>
+                        <h5 className="tit">{item.name}</h5>
+                        <Link to={item.url}>
                           <img src={mediaPath + item.img} alt="" />
                           <div className="home__cableLayout--item">
                             <div className="cableInfo">
@@ -90,7 +90,7 @@ const ProductHome = (props) => {
               props.data.viewBag.cable_product.map((item, index) => (
                 <SplideSlide key={index}>
                   <div className="home__cableLayout" key={index}>
-                    <Link to={"/product" + item.url}>
+                    <Link to={item.url}>
                       <img src={mediaPath + item.img} alt="" />
                       <div className="home__cableLayout--item">
                         <div className="cableInfo">

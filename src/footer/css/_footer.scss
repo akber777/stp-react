@@ -5,6 +5,9 @@
   background-position: center;
   background-size: cover;
 
+  @media (max-width: 992px) {
+    padding: 35px 20px !important;
+  }
 
   &__socialFixed {
     position: sticky;
@@ -14,6 +17,9 @@
     display: flex;
     flex-direction: column;
 
+    @media (max-height: 650px) {
+      bottom: 50px;
+    }
   }
 
   &__socialItems {
@@ -22,11 +28,15 @@
     transition: all 0.2s;
     background: rgb(102, 102, 102);
 
+    @media (max-width: 992px) {
+      width: 27px;
+      height: 27px;
+    }
+
     &:hover {
       transition: all 0.2s;
       width: 70px;
     }
-
 
     a {
       display: block;
@@ -40,6 +50,10 @@
     svg {
       color: #fff;
       font-size: 20px;
+
+      @media (max-width: 992px) {
+        font-size: 15px;
+      }
     }
   }
 
@@ -67,6 +81,10 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
+
+    @media (max-width: 724px) {
+      flex-direction: column;
+    }
   }
 
   &__left {
@@ -77,6 +95,7 @@
 
     @media (max-width: 992px) {
       margin-bottom: 25px;
+      width: 100%;
     }
 
     > img {
@@ -126,6 +145,7 @@
 
     @media (max-width: 992px) {
       display: block;
+      width: 100%;
     }
 
     &--items {
@@ -145,6 +165,7 @@
 
         @media (max-width: 1366px) {
           margin-right: 92px;
+          margin-left: 0 !important;
         }
 
         @media (max-width: 1162px) {
@@ -225,8 +246,11 @@
         display: block;
         color: #fff;
         transition: all 0.2s;
-        margin-bottom: 16px;
         white-space: nowrap;
+
+        &:not(:last-child) {
+          margin-bottom: 16px;
+        }
 
         &:hover {
           color: #fff;
@@ -250,11 +274,15 @@
 
   &__map {
     width: 300px;
-    height: 200px;
+    height: 229px;
     margin-top: 50px;
 
+    @media (max-width: 992px) {
+      display: none;
+    }
+
     > div {
-      height: 200px;
+      height: 229px;
     }
   }
 
@@ -266,18 +294,34 @@
 
   &__twitter {
     padding-right: 70px;
-  }
 
-  &__about {
-    padding-right: 0;
-  }
+    @media (max-width: 1400px) {
+      padding-right: 0;
+    }
 
-
-  &__terminal{
-
-    p{
-      display: flex;
+    @media (max-width: 992px) {
+      display: none;
     }
   }
 
+  &__about {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 0;
+  }
+
+  &__terminal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media (max-width: 992px) {
+      justify-content: unset;
+    }
+
+    p {
+      display: flex;
+    }
+  }
 }

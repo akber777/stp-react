@@ -168,12 +168,12 @@ const Header = (props) => {
         i18n.changeLanguage(lang);
         // window.location.reload();
 
-        window.location.replace(
-            window.location.origin +
-            "/" +
-            localStorage.getItem("i18nextLng") +
-            pathname
-        );
+        // window.location.replace(
+        //     window.location.origin +
+        //     "/" +
+        //     localStorage.getItem("i18nextLng") +
+        //     pathname
+        // );
     };
 
     return (
@@ -382,7 +382,7 @@ const Header = (props) => {
                                         muted={true}
                                         playing={true}
                                         className="header__video"
-                                        url="https://res.cloudinary.com/gocreative/video/upload/v1617970718/stp/stp_l44voh.mp4"
+                                        url="https://res.cloudinary.com/gocreative/video/upload/v1621375398/stp/video_1_m6twab.mp4"
                                     />
 
                                     {pathname === "/" || pathname === "/en" ? (

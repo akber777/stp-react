@@ -342,6 +342,10 @@
       text-transform: uppercase;
       transition: all 0.2s;
 
+      svg {
+        font-size: 20px;
+      }
+
       &:before {
         position: absolute;
         content: "";
@@ -432,8 +436,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 5555;
-    background: #be9c6b;
+    z-index: 99999999;
+    background: #2c3478;
     display: none;
     padding: 15px;
     padding-top: 60px;
@@ -699,8 +703,8 @@
 
 .translateWrapper {
   display: none;
-  top: 14px;
-  background: #fff;
+  top: 18px;
+  background: #e4e3e3;
   padding: 11px;
 }
 

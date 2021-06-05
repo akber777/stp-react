@@ -1,4 +1,4 @@
-let style = [
+export default [
   {
     featureType: "administrative",
     elementType: "labels.text.fill",
@@ -79,4 +79,4 @@ let style = [
   },
 ];
 
-export default style;
+

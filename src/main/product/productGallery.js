@@ -93,9 +93,10 @@ const Productgallery = (props) => {
                   <div className="home__cableLayout">
                     <Link to={"/product/" + item.slug}>
                       <img
-                        src={item.cover !== null ? item.cover.path : ""}
+                        src={item.cover !== null ? item.cover.list : ""}
                         alt=""
                       />
+                     
                       <div className="home__cableLayout--item">
                         <div className="cableInfo">
                           <h4 style={{ marginBottom: 15 }}>{item.name}</h4>

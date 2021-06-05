@@ -19,7 +19,7 @@ import { searchResultState } from "../../atoms/atoms";
 import renderHtml from "react-render-html";
 
 // react query
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 // jquery
 import $ from "jquery";
@@ -72,6 +72,9 @@ const SearchResult = (props) => {
     }
   }, [value]);
 
+
+
+
   return (
     <main className="searchResult myPad">
       <div className="searchResult__breadCrumbs">
@@ -82,27 +85,40 @@ const SearchResult = (props) => {
       <div className="searchResult__title">
         <h1>
           <span>{t("results for")}</span>{" "}
-          {resultsData !== null && resultsData.title}
+          {resultsData !== null && resultsData !== "" && resultsData.title}
         </h1>
       </div>
-      {resultsData !== null && resultsData.data.data.length !== 0
-        ? resultsData.data.data.length !== undefined
-          ? resultsData.data.data.map((item, index) => (
-              <div className="searchResult__content" key={index}>
-                <h4>
-                  <NavLink to={item.url !== "en/" ? item.url : "/"}>
-                    {renderHtml(item.title)}
-                  </NavLink>
-                </h4>
-                {renderHtml(item.text)}
-              </div>
-            ))
-          : ""
-        : mutateSearch.isLoading === false && (
-            <div className="searchResult__content">
-              <h4>{t("Məlumat Tapilmadı")}</h4>
+      {resultsData !== null &&
+        resultsData !== "" &&
+        (resultsData.data !== "" && resultsData.data.data.length !== 0 ? (
+          resultsData.data.data.map((item, index) => (
+            <div
+              className="searchResult__content"
+              key={index}
+              data-count={index + 1 + "."}
+            >
+              <h4>
+                <NavLink to={item.slug !== "en/" ? item.slug : "/"}>
+                  {renderHtml(item.name)}
+                </NavLink>
+              </h4>
+              {/* {renderHtml(item.text)} */}
+              <img
+                src={
+                  item.cover !== null &&
+                  item.cover !== undefined &&
+                  item.cover.length !== 0
+                    ? item.cover.path
+                    : ""
+                }
+              />
             </div>
-          )}
+          ))
+        ) : (
+          <div className="searchResult__content">
+            <h4>{t("Məlumat Tapilmadı")}</h4>
+          </div>
+        ))}
     </main>
   );
 };

@@ -1,4 +1,8 @@
 .home {
+  .partners {
+    margin-bottom: -140px;
+  }
+
   &__cableTitle {
     display: flex;
     justify-content: center;
@@ -400,7 +404,7 @@
     }
 
     .imgRelated {
-      opacity: 0 !important;
+      opacity: 0;
       width: 100%;
       height: 100%;
 
@@ -570,7 +574,6 @@
     }
   }
 
-
   &__publication {
     padding: 0 200px;
     min-height: 400px;
@@ -580,48 +583,63 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+    @media (max-width: 575px) {
+      width: 100%;
+      padding: 0 32px !important;
+    }
   }
 
-
-  &__publicationInfo{
+  &__publicationInfo {
     width: 500px;
 
-    h4{
+    h4 {
       color: #fff;
       font-size: 60px;
+
+      @media (max-width: 992px) {
+        font-size: 25px;
+      }
     }
 
-    p{
+    p {
       color: #fff;
       font-size: 17px;
+      
     }
   }
 
-  &__publicationButtonBox{
+  &__publicationButtonBox {
     display: flex;
     margin-top: 50px;
 
-    a{
+    a {
       padding: 15px;
       background: #fff;
       border-radius: 5px;
       color: #303882;
       transition: all 0.3s;
 
-      &:hover{
+      &:hover {
         transition: all 0.3s;
         background: #303882;
         color: #fff;
       }
 
-      &:not(:last-child){
+      &:not(:last-child) {
         margin-right: 15px;
       }
     }
   }
-
 }
 
 .mobSlideCable {
   height: auto;
+}
+
+.imgRelatedProjects {
+  opacity: 1 !important;
+  img {
+    opacity: 1 !important;
+  }
 }

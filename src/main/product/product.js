@@ -73,6 +73,7 @@ const Product = (props) => {
         }
     );
 
+
     return (
         <main>
             <div className="product__breadCrumbs myPad">
@@ -141,7 +142,7 @@ const Product = (props) => {
                                 isLoading === false && (
                                     <Tab eventKey="Pdf" title="Pdf">
                                         <iframe frameBorder="0" scrolling="no"
-                                                width="640" height="480"
+                                                width="640" height="800"
                                                 src="https://apiglobalcable.gocreative.az/storage/app/uploads/public/608/e49/072/608e49072f340618505987.pdf">
                                         </iframe>
                                     </Tab>

@@ -1,18 +1,19 @@
 .download {
 
-  .productDetail__tabBox{
+  .productDetail__tabBox {
     margin-top: 25px;
   }
 
   &__info {
-
-    &:nth-child(odd){
+    &:nth-child(odd) {
       background-color: #e8e8e8 !important;
     }
 
     &:hover {
       transition: all 0.2s;
       background-color: #303882 !important;
+
+
 
       h4 {
         transition: all 0.2s;
@@ -30,6 +31,7 @@
       transition: all 0.2s;
       justify-content: space-between;
       width: 100%;
+
       img {
         max-width: 100px;
       }
@@ -39,6 +41,8 @@
       display: inline-flex;
       align-items: center;
       transition: all 0.2s;
+      font-size: 20px !important;
+
       img {
         margin-right: 10px;
         width: 28px;
@@ -112,7 +116,7 @@
       font-size: 25px;
       margin-bottom: 0;
 
-      img{
+      img {
         border-radius: 100%;
         width: 32px;
         height: 32px;
@@ -132,10 +136,10 @@
     }
   }
 
-  &__description{
+  &__description {
     margin-top: 15px;
 
-    p{
+    p {
       font-size: 18px;
 
     }

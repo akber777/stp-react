@@ -63,6 +63,7 @@ const ProductSubGallery = (props) => {
                 <div className="home__cableLayout">
                   <Link to={"/subcategory/" + item.slug}>
                     <img src={item.img !== null ? item.img.cover : ""} alt="" />
+
                     <div className="home__cableLayout--item">
                       <div className="cableInfo">
                         <h4 style={{ marginBottom: 10 }}>{item.name}</h4>

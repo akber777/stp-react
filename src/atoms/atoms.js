@@ -14,3 +14,8 @@ export const myLang = atom({
   key: "myLang",
   default: localStorage.getItem("i18nextLng"),
 });
+
+export const helmetState = atom({
+  key: "helmetState",
+  default: {},
+});

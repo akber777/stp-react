@@ -79,6 +79,10 @@
     width: 100%;
     padding: 0 80px;
 
+    @media(max-width:724px){
+      padding: 0 32px;
+    }
+
     .splide__arrow {
       background: #303882;
       opacity: 1;

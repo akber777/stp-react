@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
+import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 
 // // renderHtml
 // import renderHtml from 'react-render-html';
@@ -11,9 +11,14 @@ import mapStyle from "./mapStyle";
 // map css
 import "./css/_map.scss";
 
+//proptypes
+import PropTypes from 'prop-types';
+
 let currentZoom = 10;
 
 class MapContainer extends Component {
+
+
     state = {
         showingInfoWindow: false,
         activeMarker: "",
@@ -43,6 +48,13 @@ class MapContainer extends Component {
         });
     }
 
+
+    _mapLoaded(mapProps, map) {
+        map.setOptions({
+            styles: mapStyle
+        })
+    }
+
     render() {
         const mapContainerStyle = {
             height: "409px",
@@ -70,44 +82,43 @@ class MapContainer extends Component {
         //     }]
         // }
 
+        const defaultMapOptions = {
+            scaleControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+            panControl: false,
+            rotateControl: false,
+            fullscreenControl: false,
+            zoomControl: false,
+        };
+
+
         return (
-            <div>
-                <LoadScript googleMapsApiKey="AIzaSyANektuMKczEQdzMI82zHlFnMTVSmT55Vw">
-                    <GoogleMap
-                        id="mapWithClusters"
-                        mapContainerStyle={mapContainerStyle}
-                        zoom={this.state.zoomMap}
-                        center={this.state.center}
-                        options={mapOptions}
-                    >
-                        {/*{this.props.locations !== false*/}
-                        {/*    ? this.props.locations.map((item, index) => (*/}
-                        {/*        <Marker*/}
-                        {/*            key={index}*/}
-                        {/*            onClick={*/}
-                        {/*                (this.onMarkerClick = () => {*/}
-                        {/*                    this.setState({*/}
-                        {/*                        selectedPlace: item[0],*/}
-                        {/*                        center: {lat: item[0], lng: item[1]},*/}
-                        {/*                        showingInfoWindow: true,*/}
-                        {/*                        positions: this.props.locations,*/}
-                        {/*                        show: true,*/}
-                        {/*                    });*/}
-                        {/*                })*/}
-                        {/*            }*/}
-                        {/*            // icon={{*/}
-                        {/*            //     size: {width: 30, height: 30,}*/}
-                        {/*            // }}*/}
-                        {/*            position={this.state.center}*/}
-                        {/*            animation={2}*/}
-                        {/*        />*/}
-                        {/*    ))*/}
-                        {/*    : ""}*/}
-                    </GoogleMap>
-                </LoadScript>
+            <div id="mapWithClusters">
+                <Map
+                    google={this.props.google}
+                    zoom={this.state.zoomMap}
+                    initialCenter={this.state.center}
+                    disableDefaultUI={true}
+                    defaultOptions={{
+                        styles: this.props
+                    }}
+
+
+                >
+                    <Marker
+                        position={this.state.center}
+                    />
+                </Map>
             </div>
         );
     }
 }
 
-export default MapContainer;
+
+MapContainer.defaultProps = mapStyle
+
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyANektuMKczEQdzMI82zHlFnMTVSmT55Vw'
+})(MapContainer);
+;
