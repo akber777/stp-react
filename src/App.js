@@ -123,7 +123,7 @@ const Page404 = Loadable({
 });
 
 function App() {
-  window.addEventListener("contextmenu", (e) => e.preventDefault());
+  // window.addEventListener("contextmenu", (e) => e.preventDefault());
 
   const { pathname } = useLocation();
 
@@ -142,25 +142,6 @@ function App() {
       <HelmetApp />
       <Header />
       <Switch>
-        {pathname !== "/" &&
-          pathname !== "/en" &&
-          pathname !== "/az" &&
-          pathname.split("/")[1] !== "contact" &&
-          pathname.split("/")[1] !== "aboutus" &&
-          pathname.split("/")[1] !== "news" &&
-          pathname.split("/")[1] !== "download" &&
-          pathname.split("/")[1] !== "searchresult" &&
-          pathname.split("/")[1] !== "subcategory" &&
-          pathname.split("/")[1] !== "productsubgallery" &&
-          pathname.split("/")[1] !== "product" &&
-          pathname.split("/")[1] !== "related" &&
-          pathname.split("/")[1] !== "related-list" &&
-          pathname.split("/")[1] !== "404" &&
-          pathname.split("/")[1] !== "product-list" && (
-            <Route path={"/*"}>
-              <Static />
-            </Route>
-          )}
         <Route exact path={"/" + localStorage.getItem("i18nextLng")}>
           <Home />
         </Route>
@@ -208,6 +189,9 @@ function App() {
         </Route>
         <Route path={"/404"}>
           <Page404 />
+        </Route>
+        <Route path={"/:id"}>
+          <Static />
         </Route>
       </Switch>
       <div className="footer__socialFixed">

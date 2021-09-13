@@ -4,6 +4,14 @@
   top: 0;
   left: 0;
 
+  * {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   .showSearch {
     display: block !important;
   }
@@ -264,7 +272,6 @@
       transition: all 0.2s;
       text-transform: uppercase;
 
-
       &:after {
         position: absolute;
         content: "";
@@ -356,7 +363,6 @@
         background-color: #303882;
         transition: all 0.4s cubic-bezier(0.63, 0.18, 0, 1.03);
       }
-
 
       &:hover {
         &:before {
@@ -617,8 +623,30 @@
     }
   }
 
+  .playVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 555;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    display: none;
+
+    @media (max-width: 575px) {
+      display: block;
+    }
+  }
+
   // splide slider
   &__slider {
+    position: relative;
     height: 100vh;
 
     @media (max-width: 575px) {
@@ -667,7 +695,6 @@
       }
     }
   }
-
 }
 
 .fixedTop {
@@ -716,7 +743,6 @@
   }
 }
 
-
 .hoverScroll {
   background: #fff !important;
 
@@ -732,11 +758,9 @@
     display: none !important;
   }
 
-
   .header__searchBox .noHover {
     display: block !important;
   }
-
 
   a {
     color: #303882 !important;
@@ -747,9 +771,7 @@
   }
 }
 
-
 .alwaysFixedInline {
-
   &:hover .hoverLogoBox a {
     display: none !important;
   }
@@ -757,10 +779,7 @@
   &:hover .hoverLogoBox a:first-child {
     display: block !important;
   }
-
-
 }
-
 
 .hoverScrollInline {
   position: sticky;

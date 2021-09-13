@@ -155,9 +155,9 @@ const Home = () => {
         <div className="home__publicationInfo">
           <h4>Publications.</h4>
           <p>
-            Discover the entire product variety of STP Global Cable in our latest
-            publications. This is where you will find all the information about
-            our cables and wires, as well as our services.
+            Discover the entire product variety of STP Global Cable in our
+            latest publications. This is where you will find all the information
+            about our cables and wires, as well as our services.
           </p>
           <div className="home__publicationButtonBox">
             <NavLink to="/download/product">Downloads</NavLink>

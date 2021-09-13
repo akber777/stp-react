@@ -3,6 +3,14 @@
   display: flex;
   align-items: flex-start;
 
+  * {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
   .home__cableLayout--item {
     opacity: 1 !important;
   }

@@ -1,4 +1,4 @@
-export const baseUrl = "http://api.stpglobalcable.com";
+export const baseUrl = "https://api.stpglobalcable.com";
 
 export const version = "/api/v1/";
 

@@ -25,6 +25,8 @@ const ProductMenu = (props) => {
   const [dataLoad, setDataLoad] = useState(false);
 
   useLayoutEffect(() => {
+    console.log($(".product__info a.active").next().show());
+
     resizeBody();
     $(".product__info a.active").parents(".parentsA").addClass("showAll");
     $(".product__info a.active").parents(".parentsA").slideDown();
