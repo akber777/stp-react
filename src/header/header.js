@@ -277,7 +277,12 @@ const Header = (props) => {
                 {headerMenu.isLoading === false &&
                   headerMenu.data !== undefined &&
                   headerMenu.data.map((item, index) => (
-                    <NavLink to={checkedUrl(item)}>{item.title}</NavLink>
+                    <NavLink
+                      to={checkedUrl(item)}
+                      key={index.toString() + item.title}
+                    >
+                      {item.title}
+                    </NavLink>
                   ))}
               </div>
               <div className="header__navRight">

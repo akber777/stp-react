@@ -223,16 +223,124 @@
   right: -3em !important;
 }
 
-
 // .staticData{
 //   margin-bottom: -160px;
 // }
 
-
-.splide__arrows{
-
-  @media(max-width: 724px){
+.splide__arrows {
+  @media (max-width: 724px) {
     display: none;
   }
+}
 
+.accordion__button {
+  background: #e8e8e8 !important;
+
+  &.detail {
+    background: #303882 !important;
+  }
+
+  padding: 30px 38px !important;
+
+  h2 {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 26px;
+    margin-bottom: 13px;
+    color: #303882;
+
+    &.detail {
+      color: #ffffff;
+    }
+  }
+
+  &:before {
+    display: none !important;
+  }
+
+  .accordionFlex {
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #303882;
+    display: flex;
+    justify-content: space-between;
+
+    .email {
+      a {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #303882;
+
+        &.detail {
+          color: #fff;
+        }
+      }
+    }
+
+    span {
+      margin-right: 20px;
+      color: #303882;
+
+      &.detail {
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.accordion {
+  border: none !important;
+}
+
+.accordion__panel {
+  padding: 24px 38px !important;
+
+  &.applyTerms {
+    padding: 24px 0 !important;
+  }
+
+  .applyTendersFlex {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 60px;
+
+    .applyTenders {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 26px;
+      color: #ffffff;
+      background: #303882;
+      border-radius: 10px;
+      display: inline-flex;
+      justify-content: flex-end;
+      width: 197px;
+      height: 72px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 26px;
+    color: #303882;
+    margin-bottom: 24px;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    color: #4f4f4f;
+  }
+}
+
+.homePageTender {
+  margin: 50px 0;
 }

@@ -43,6 +43,7 @@ import { Link, NavLink } from "react-router-dom";
 
 //translation
 import { useTranslation } from "react-i18next";
+import HomeTenders from "./homeTenders";
 
 const Home = () => {
   const home = useQuery(["home", ""], HomePage, {
@@ -65,10 +66,7 @@ const Home = () => {
             width="100%"
             title="Cuurency"
             height="300px;"
-            frameBorder="0"
             allowtransparency="true"
-            marginWidth="0"
-            marginHeight="0"
           ></iframe>
         </div>
       </div>
@@ -144,6 +142,7 @@ const Home = () => {
       <RelatedProjects data={home.data} />
       <ProductVideo data={home.data} />
       <News />
+      <HomeTenders />
       <div
         className="home__publication"
         style={{
