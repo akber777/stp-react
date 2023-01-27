@@ -1,0 +1,144 @@
+.download {
+  .productDetail__tabBox {
+    margin-top: 25px;
+  }
+
+  &__info {
+    &:nth-child(odd) {
+      background-color: #e8e8e8 !important;
+    }
+
+    &:hover {
+      transition: all 0.2s;
+      background-color: #303882 !important;
+
+      h4 {
+        transition: all 0.2s;
+        color: #fff !important;
+      }
+
+      a {
+        transition: all 0.2s;
+        color: #fff !important;
+      }
+    }
+
+    a {
+      display: flex !important;
+      transition: all 0.2s;
+      justify-content: space-between;
+      width: 100%;
+
+      img {
+        max-width: 100px;
+      }
+    }
+
+    h4 {
+      display: inline-flex;
+      align-items: center;
+      transition: all 0.2s;
+      font-size: 20px !important;
+
+      img {
+        margin-right: 10px;
+        width: 28px;
+      }
+    }
+  }
+
+  .product__right {
+    width: 100%;
+    // padding: 25px 0;
+    padding-bottom: 0;
+
+    //&--title {
+    //  padding: 0 20px
+    //}
+  }
+
+  .downFLex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (max-width: 992px) {
+      flex-direction: row;
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+  }
+
+  .product__left {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-width: 16%;
+
+    a {
+      padding: 15px !important;
+      transition: all 0.2s;
+
+      &.active {
+        background-color: #303882;
+        color: #fff;
+      }
+
+      &:hover {
+        background-color: #303882;
+        color: #fff;
+      }
+    }
+  }
+
+  &__info {
+    padding: 15px !important;
+
+    a {
+      @media (max-width: 765px) {
+        flex-direction: column;
+        align-items: unset !important;
+      }
+
+      img {
+        @media (max-width: 765px) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: #fff;
+    }
+
+    h4 {
+      font-size: 25px;
+      margin-bottom: 0;
+
+      img {
+        border-radius: 100%;
+        width: 32px;
+        height: 32px;
+      }
+
+      @media (max-width: 765px) {
+        margin-bottom: 20px;
+      }
+    }
+
+    span {
+      margin-left: 15px;
+      @media (max-width: 765px) {
+        margin-left: 0;
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  &__description {
+    margin-top: 15px;
+
+    p {
+      font-size: 18px;
+    }
+  }
+}

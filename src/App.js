@@ -38,6 +38,24 @@ const Home = Loadable({
   loading: Loading,
 });
 
+// Tenders
+const Tenders = Loadable({
+  loader: () => import("./main/tenders/tenders"),
+  loading: Loading,
+});
+
+// TendersDetail
+const TendersDetail = Loadable({
+  loader: () => import("./main/tenders/tendersDetail"),
+  loading: Loading,
+});
+
+// TermsForApply
+const TermsForApply = Loadable({
+  loader: () => import("./main/terms-for-apply/index"),
+  loading: Loading,
+});
+
 // NewsDetail
 const NewsDetail = Loadable({
   loader: () => import("./main/news/newsDetail"),
@@ -147,6 +165,15 @@ function App() {
         </Route>
         <Route exact path={"/"}>
           <Home />
+        </Route>
+        <Route exact path={"/tenders"}>
+          <Tenders />
+        </Route>
+        <Route exact path={"/tenders/:slug"}>
+          <TendersDetail />
+        </Route>
+        <Route exact path={"/terms-for-apply"}>
+          <TermsForApply />
         </Route>
         <Route path={"/news/*"}>
           <NewsDetail />
