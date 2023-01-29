@@ -344,3 +344,42 @@
 .homePageTender {
   margin: 50px 0;
 }
+
+.accordian__form {
+  width: 80%;
+}
+
+.accordion__inputBox {
+  display: flex;
+  flex-wrap: wrap;
+
+  input {
+    background: #f7f7f7;
+    border-radius: 10px;
+    width: calc(50% - 35px);
+    height: 68px;
+    padding: 23px 31px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    color: #303882;
+    margin-bottom: 16px;
+
+    &::placeholder {
+      color: #303882;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 21px;
+      color: #303882;
+    }
+
+    &:nth-child(odd) {
+      margin-right: 35px;
+    }
+  }
+}
+
+.accordion__applyFormBox {
+  display: flex;
+  justify-content: flex-end;
+}

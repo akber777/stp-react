@@ -50,12 +50,6 @@ const TendersDetail = Loadable({
   loading: Loading,
 });
 
-// TermsForApply
-const TermsForApply = Loadable({
-  loader: () => import("./main/terms-for-apply/index"),
-  loading: Loading,
-});
-
 // NewsDetail
 const NewsDetail = Loadable({
   loader: () => import("./main/news/newsDetail"),
@@ -171,9 +165,6 @@ function App() {
         </Route>
         <Route exact path={"/tenders/:slug"}>
           <TendersDetail />
-        </Route>
-        <Route exact path={"/terms-for-apply"}>
-          <TermsForApply />
         </Route>
         <Route path={"/news/*"}>
           <NewsDetail />

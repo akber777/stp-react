@@ -3,13 +3,7 @@ import { useLayoutEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { resizeBody } from "../../helper/helper";
 import DownloadMenu from "./downloadMenu";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
+import { Accordion } from "react-accessible-accordion";
 // css
 import "../product/css/_product.scss";
 import "./css/_download.scss";
@@ -17,7 +11,6 @@ import "../static/css/_static.scss";
 import "react-accessible-accordion/dist/fancy-example.css";
 import { useQuery } from "react-query";
 import { tendersData } from "../../queries/queries";
-import renderHtml from "react-render-html";
 
 const Tenders = () => {
   const { slug } = useParams();

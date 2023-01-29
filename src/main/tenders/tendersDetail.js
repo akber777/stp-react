@@ -1,15 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLayoutEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { resizeBody } from "../../helper/helper";
 import DownloadMenu from "./downloadMenu";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
+import { Accordion } from "react-accessible-accordion";
 // css
 import "../product/css/_product.scss";
 import "./css/_download.scss";
@@ -28,12 +22,24 @@ const Tenders = () => {
 
   const { data, isLoading } = useQuery(["TENDERS_DETAIL", slug], tendersDetail);
 
+  const [apply, setApply] = useState(false);
+
+  const form = new FormData();
+
+  const handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+
+    console.log({
+      name,
+      value,
+    });
+  };
+
   return (
     <main>
       <div className="product__breadCrumbs static myPad">
         <NavLink to={"/"}>HomePage</NavLink>
         <NavLink to={"/tenders"}>Tenders</NavLink>
-
         {slug !== undefined && <NavLink to={"/tenders" + slug}>{slug}</NavLink>}
       </div>
       <div className="download  product productDetail myPad">
@@ -74,11 +80,78 @@ const Tenders = () => {
                     </div>
                   </div>
                   <div className="accordion__panel">
-                    {renderHtml(data.data.description)}
+                    {!apply ? (
+                      renderHtml(data.data.description)
+                    ) : (
+                      <div className="accordian__form">
+                        <h3>Please fill the form to apply tender</h3>
+                        <div className="accordion__flexForm">
+                          <div className="accordion__inputBox">
+                            <input
+                              placeholder="Company name"
+                              name="company"
+                              onChange={handleChange}
+                            />
+                            <input
+                              placeholder="Phone number"
+                              name="phone"
+                              onChange={handleChange}
+                            />
+                            <input
+                              placeholder="Responsible person name and surname"
+                              name="responsible"
+                              onChange={handleChange}
+                            />
+                            <input
+                              placeholder="Email"
+                              name="email"
+                              onChange={handleChange}
+                            />
+                            <input
+                              placeholder="Attach proposal"
+                              name="proporsal"
+                              type="file"
+                            />
+                            <input placeholder="Adress" name="address" />
+                            <input
+                              placeholder="Attach proposal"
+                              name="company_registration"
+                              type="file"
+                            />
+                            <input
+                              placeholder="Bank details"
+                              name="bank_details"
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="applyTendersFlex">
+                            <button
+                              className="applyTenders"
+                              onClick={() => {
+                                setApply(true);
+                              }}
+                            >
+                              APPLY
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
-                    <div className="applyTendersFlex">
-                      <button className="applyTenders">APPLY</button>
-                    </div>
+                    {!apply ? (
+                      <div className="applyTendersFlex">
+                        <button
+                          className="applyTenders"
+                          onClick={() => {
+                            setApply(true);
+                          }}
+                        >
+                          APPLY
+                        </button>
+                      </div>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                 </>
               )}
