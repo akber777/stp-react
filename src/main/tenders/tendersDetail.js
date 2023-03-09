@@ -9,9 +9,11 @@ import "../product/css/_product.scss";
 import "./css/_download.scss";
 import "../static/css/_static.scss";
 import "react-accessible-accordion/dist/fancy-example.css";
-import { useQuery } from "react-query";
-import { tendersDetail } from "../../queries/queries";
+import { useMutation, useQuery } from "react-query";
+import { tendersApply, tendersDetail } from "../../queries/queries";
 import renderHtml from "react-render-html";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Tenders = () => {
   const { slug } = useParams();
@@ -22,21 +24,80 @@ const Tenders = () => {
 
   const { data, isLoading } = useQuery(["TENDERS_DETAIL", slug], tendersDetail);
 
+  const { mutate, isLoading: isLoadingMutate } = useMutation(
+    (params) => tendersApply(params),
+    {
+      onSuccess: () => {
+        toast.success("Success", {
+          position: "top-right",
+          autoClose: 500000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      },
+      onError: () => {
+        toast.error("Error", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      },
+    }
+  );
+
   const [apply, setApply] = useState(false);
+
+  const [formParams, setFormParams] = useState({});
 
   const form = new FormData();
 
+  const handleFile = (e) => {
+    const { name, files } = e.currentTarget;
+
+    if (files[0]) {
+      setFormParams((prev) => ({
+        ...prev,
+        [name]: files[0],
+      }));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
+    setFormParams((prev) => ({ ...prev, [name]: value }));
+  };
 
-    console.log({
-      name,
-      value,
-    });
+  const handleSubmit = (id) => {
+    for (const key in formParams) {
+      form.append(key, formParams[key]);
+    }
+
+    if (!isLoadingMutate) mutate({ form, id });
   };
 
   return (
     <main>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <div className="product__breadCrumbs static myPad">
         <NavLink to={"/"}>HomePage</NavLink>
         <NavLink to={"/tenders"}>Tenders</NavLink>
@@ -111,12 +172,14 @@ const Tenders = () => {
                               placeholder="Attach proposal"
                               name="proporsal"
                               type="file"
+                              onChange={handleFile}
                             />
                             <input placeholder="Adress" name="address" />
                             <input
                               placeholder="Attach proposal"
                               name="company_registration"
                               type="file"
+                              onChange={handleFile}
                             />
                             <input
                               placeholder="Bank details"
@@ -129,6 +192,7 @@ const Tenders = () => {
                               className="applyTenders"
                               onClick={() => {
                                 setApply(true);
+                                handleSubmit(data?.data.id);
                               }}
                             >
                               APPLY

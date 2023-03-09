@@ -44,6 +44,11 @@ const Tenders = Loadable({
   loading: Loading,
 });
 
+const TermsForApply = Loadable({
+  loader: () => import("./main/terms/terms"),
+  loading: Loading,
+});
+
 // TendersDetail
 const TendersDetail = Loadable({
   loader: () => import("./main/tenders/tendersDetail"),
@@ -162,6 +167,9 @@ function App() {
         </Route>
         <Route exact path={"/tenders"}>
           <Tenders />
+        </Route>
+        <Route exact path={"/terms-for-apply"}>
+          <TermsForApply />
         </Route>
         <Route exact path={"/tenders/:slug"}>
           <TendersDetail />

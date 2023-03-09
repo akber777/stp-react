@@ -383,3 +383,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
+.Toastify{
+  position: absolute;
+  z-index: 99999999 !important;
+}
