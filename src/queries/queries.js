@@ -243,8 +243,18 @@ export const tendersDetail = async (key) => {
 // tendersApply
 export const tendersApply = async (params) => {
   const res = await axios.post(
-    baseUrl + version + `data/tenders/apply/${params.id}`,
-    params.form
+    baseUrl + version + `data/tenders/apply`,
+    params
+  );
+
+  return res.data;
+};
+
+export const termsForApply = async (params) => {
+  const res = await axios.get(
+    baseUrl + version + `data/page/tender-terms-apply`,
+
+    params
   );
 
   return res.data;

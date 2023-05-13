@@ -353,7 +353,8 @@
   display: flex;
   flex-wrap: wrap;
 
-  input {
+  input,
+  div {
     background: #f7f7f7;
     border-radius: 10px;
     width: calc(50% - 35px);
@@ -364,6 +365,7 @@
     line-height: 21px;
     color: #303882;
     margin-bottom: 16px;
+    border: 1px solid #303882;
 
     &::placeholder {
       color: #303882;
@@ -384,8 +386,88 @@
   justify-content: flex-end;
 }
 
-
-.Toastify{
+.Toastify {
   position: absolute;
   z-index: 99999999 !important;
+}
+
+.proporsal {
+  position: relative;
+
+  span {
+    position: absolute;
+    inset: 20px;
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0px 31px;
+  }
+}
+
+.accordion__panel {
+  table {
+    tr,
+    td {
+      border: 1px solid #000;
+      padding: 20px;
+    }
+  }
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.loader div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+
+.loader div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loader div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loader div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.xls_download {
+  font-size: 20px;
+  color: #4f4f44 !important;
+  display: inline-flex;
+  align-items: center;
+
+  img{
+    margin-right: 5px;
+    width: 25px;
+  }
 }

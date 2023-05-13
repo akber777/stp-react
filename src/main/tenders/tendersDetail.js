@@ -14,6 +14,7 @@ import { tendersApply, tendersDetail } from "../../queries/queries";
 import renderHtml from "react-render-html";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../loader/loader";
 
 const Tenders = () => {
   const { slug } = useParams();
@@ -24,19 +25,37 @@ const Tenders = () => {
 
   const { data, isLoading } = useQuery(["TENDERS_DETAIL", slug], tendersDetail);
 
+  const [formParams, setFormParams] = useState({
+    company: "",
+    phone: "",
+    responsible: "",
+    email: "",
+    bank_details: "",
+    address: "",
+  });
+
   const { mutate, isLoading: isLoadingMutate } = useMutation(
     (params) => tendersApply(params),
     {
       onSuccess: () => {
         toast.success("Success", {
           position: "top-right",
-          autoClose: 500000,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
           theme: "dark",
+        });
+
+        setFormParams({
+          company: "",
+          phone: "",
+          address: "",
+          responsible: "",
+          email: "",
+          bank_details: "",
         });
       },
       onError: () => {
@@ -55,8 +74,6 @@ const Tenders = () => {
   );
 
   const [apply, setApply] = useState(false);
-
-  const [formParams, setFormParams] = useState({});
 
   const form = new FormData();
 
@@ -77,11 +94,23 @@ const Tenders = () => {
   };
 
   const handleSubmit = (id) => {
+    form.append("id", id);
     for (const key in formParams) {
       form.append(key, formParams[key]);
     }
 
-    if (!isLoadingMutate) mutate({ form, id });
+    if (
+      formParams.phone &&
+      formParams.company &&
+      formParams.responsible &&
+      formParams.proporsal &&
+      formParams.company_registration &&
+      formParams.bank_details &&
+      formParams.address &&
+      formParams.email &&
+      !isLoadingMutate
+    )
+      mutate(form);
   };
 
   return (
@@ -142,48 +171,96 @@ const Tenders = () => {
                   </div>
                   <div className="accordion__panel">
                     {!apply ? (
-                      renderHtml(data.data.description)
+                      <>
+                        {renderHtml(data?.data.description)}
+                        {data.data?.files.map((item) => (
+                          <a
+                            className="xls_download"
+                            target="_blank"
+                            href={item.path}
+                          >
+                            <img
+                              src={require("../../images/pdf.png").default}
+                              alt=""
+                            />
+                            {item.file_name}
+                          </a>
+                        ))}
+                      </>
                     ) : (
                       <div className="accordian__form">
                         <h3>Please fill the form to apply tender</h3>
-                        <div className="accordion__flexForm">
+                        <form
+                          className="accordion__flexForm"
+                          onSubmit={(e) => e.preventDefault()}
+                        >
                           <div className="accordion__inputBox">
                             <input
+                              required
                               placeholder="Company name"
                               name="company"
+                              value={formParams.company}
                               onChange={handleChange}
                             />
                             <input
+                              required
                               placeholder="Phone number"
                               name="phone"
+                              value={formParams.phone}
                               onChange={handleChange}
                             />
                             <input
+                              required
                               placeholder="Responsible person name and surname"
                               name="responsible"
+                              value={formParams.responsible}
                               onChange={handleChange}
                             />
                             <input
+                              required
                               placeholder="Email"
                               name="email"
+                              value={formParams.email}
                               onChange={handleChange}
                             />
+                            <div className="proporsal">
+                              <span>
+                                {formParams["proporsal"]
+                                  ? formParams["proporsal"].name
+                                  : "Attach proposal"}{" "}
+                              </span>
+                              <input
+                                required
+                                name="proporsal"
+                                type="file"
+                                onChange={handleFile}
+                              />
+                            </div>
                             <input
-                              placeholder="Attach proposal"
-                              name="proporsal"
-                              type="file"
-                              onChange={handleFile}
+                              required
+                              placeholder="Adress"
+                              name="address"
+                              value={formParams.address}
+                              onChange={handleChange}
                             />
-                            <input placeholder="Adress" name="address" />
+                            <div className="proporsal">
+                              <span>
+                                {formParams["company_registration"]
+                                  ? formParams["company_registration"].name
+                                  : " Attach company registration document"}{" "}
+                              </span>
+                              <input
+                                required
+                                name="company_registration"
+                                type="file"
+                                onChange={handleFile}
+                              />
+                            </div>
                             <input
-                              placeholder="Attach proposal"
-                              name="company_registration"
-                              type="file"
-                              onChange={handleFile}
-                            />
-                            <input
+                              required
                               placeholder="Bank details"
                               name="bank_details"
+                              value={formParams.bank_details}
                               onChange={handleChange}
                             />
                           </div>
@@ -195,10 +272,10 @@ const Tenders = () => {
                                 handleSubmit(data?.data.id);
                               }}
                             >
-                              APPLY
+                              {isLoadingMutate ? <Loader /> : "APPLY"}
                             </button>
                           </div>
-                        </div>
+                        </form>
                       </div>
                     )}
 
