@@ -463,8 +463,12 @@
 .xls_download {
   font-size: 20px;
   color: #4f4f44 !important;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+
+  &:not(:last-child){
+    margin-bottom: 20px;
+  }
 
   img{
     margin-right: 5px;

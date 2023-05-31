@@ -43,7 +43,7 @@ const Tenders = () => {
           <div className="productDetail__tabBox">
             <Accordion>
               <div className="accordion__panel">
-                {renderHtml(data?.markup)}
+                {!isLoading && renderHtml(data?.markup)}
               </div>
             </Accordion>
           </div>
